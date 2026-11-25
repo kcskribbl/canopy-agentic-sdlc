@@ -6,6 +6,18 @@ This standalone Java 21 / Spring Boot service creates short links, previews thei
 
 ## Architecture at a glance
 
+```mermaid
+flowchart LR
+    C[Client] -->|HTTP| API["Spring Boot<br/>controllers"]
+    API -->|create, preview, redirect| S[LinkService]
+    API -->|stats| A[LinkStatistics]
+    S -->|look up destination| K["DestinationCache<br/>Caffeine"]
+    K -.->|optional shared cache| R[(Redis)]
+    S -->|insert, count, or read on miss| P[LinkStore]
+    P --> DB[("PostgreSQL<br/>or local H2")]
+    A -->|aggregate totals| DB
+```
+
 The same JAR runs in both modes. Controllers delegate to `LinkService` for creation and lookup, and to `LinkStatistics` for aggregate totals. Each redirect updates SQL before returning `302`; Redis is never the source of truth for a visit. See the [request sequence](#request-flow-and-core-logic) and [package map](#project-layout).
 
 | Runtime | Link and counter storage | Destination cache |
