@@ -1,5 +1,18 @@
 # Canopy - Agentic AI Platform
 
+```text
++----------------------------------------------------+
+|   AAA     GGGG   EEEEE   N   N   TTTTT   III   CCC |
+|  A   A   G       E       NN  N     T      I   C    |
+|  AAAAA   G  GG   EEEE    N N N     T      I   C    |
+|  A   A   G   G   E       N  NN     T      I   C    |
+|  A   A    GGGG   EEEEE   N   N     T     III   CCC |
+|                                                    |
+|             SOFTWARE ENGINEERING SYSTEM            |
+|                    URL SHORTNER                    |
++----------------------------------------------------+
+```
+
 **Canopy** is the fictional brand name for a governed, multi-agent AI platform for the software development lifecycle. Whether a requirement is clear or needs clarification, the platform guides it toward a reviewable change, with evidence of what was built, why, and how it was verified.
 
 The **control plane** is the part of Canopy that coordinates the engineering work. Agents perform tasks such as writing code or running tests; the Python control plane determines which tasks may run next, which tools each agent may use, and when a person must decide. For example, passing tests alone cannot release a change: the security check must also pass, and a human must review the evidence and approve the release. This is **controlled autonomy**: agents do the work within defined boundaries; humans own oversight, approvals, and final quality.
