@@ -1,0 +1,410 @@
+[
+  {
+    "action": "created",
+    "agent": "Control Plane",
+    "details": {
+      "baseline": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+      "input": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "policy": "f3f5defc3266c21459ccadfcaa9d06505969d5d53e31c947a7a73a3602974c47"
+    },
+    "previous": null,
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "intake",
+    "timestamp": "2026-11-25T20:06:04.600195+00:00",
+    "hash": "3f04d7cf215d217e9a7855f7cd1974b890314e54a3ad8abfaf9e04d38c7e45d9"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Requirements Analyst",
+    "details": {
+      "attempt": 1,
+      "inputs": {},
+      "scenario": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "tool": "normalize"
+    },
+    "previous": "3f04d7cf215d217e9a7855f7cd1974b890314e54a3ad8abfaf9e04d38c7e45d9",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T20:06:04.604126+00:00",
+    "hash": "291c9ca765a003bac8161f48735b38045b100def5606c7cc2e0407032ea90d5d"
+  },
+  {
+    "action": "passed",
+    "agent": "Requirements Analyst",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "671764407840fe5cb98f56976c7be6c4ad5af38d19df4ecfedb4d678f2375210",
+      "tool": "normalize"
+    },
+    "previous": "291c9ca765a003bac8161f48735b38045b100def5606c7cc2e0407032ea90d5d",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T20:06:04.607126+00:00",
+    "hash": "bf4dd9bea0f394601a43cabac782e6064b45d98349043cdb13c780c6c024ce85"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "d77cb3d2cc77b698038a472ff06a642231437e1ea744ad9b84cb4de6246f1b16",
+      "inputs": {
+        "requirements": "671764407840fe5cb98f56976c7be6c4ad5af38d19df4ecfedb4d678f2375210"
+      }
+    },
+    "previous": "bf4dd9bea0f394601a43cabac782e6064b45d98349043cdb13c780c6c024ce85",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T20:06:04.607886+00:00",
+    "hash": "d2e4f4f579e5dc427c54b4f808874fa0ca7818a967c90cee64586bb829040030"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge requirements_approval in isolated replay only",
+      "subject": "d77cb3d2cc77b698038a472ff06a642231437e1ea744ad9b84cb4de6246f1b16"
+    },
+    "previous": "d2e4f4f579e5dc427c54b4f808874fa0ca7818a967c90cee64586bb829040030",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T20:06:05.035527+00:00",
+    "hash": "1287acfb834bf6535c9adeece1db09081965601aad03cb1398cf43c33b2fb98b"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Architect",
+    "details": {
+      "attempt": 2,
+      "inputs": {
+        "requirements": "671764407840fe5cb98f56976c7be6c4ad5af38d19df4ecfedb4d678f2375210",
+        "requirements_approval": "64a351d7ce77693e0fd1f8d7363ec6f2328025d9986a5aef28a864a3641633ff"
+      },
+      "scenario": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "tool": "inspect_project"
+    },
+    "previous": "1287acfb834bf6535c9adeece1db09081965601aad03cb1398cf43c33b2fb98b",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "design",
+    "timestamp": "2026-11-25T20:06:05.533701+00:00",
+    "hash": "dde1defda7788b3b39ce15b6246f53678277eb3b1835f19e5a0a44f609ea27f9"
+  },
+  {
+    "action": "passed",
+    "agent": "Architect",
+    "details": {
+      "duration_seconds": 0.078,
+      "output": "0bc7eed63d1ad527105c8af1ac0307dd8378d88dfeb2b08800d811d0bdbf813c",
+      "tool": "inspect_project"
+    },
+    "previous": "dde1defda7788b3b39ce15b6246f53678277eb3b1835f19e5a0a44f609ea27f9",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "design",
+    "timestamp": "2026-11-25T20:06:05.614864+00:00",
+    "hash": "929b69627a4ccef62dfd8d5ae3354cf6fc9c1f35fbaafc030c7e7a2ef0d65179"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "eac548ac1955e111e42896c2acfdbf4271e244188ede5a1a18a9a784793be7bf",
+      "inputs": {
+        "design": "0bc7eed63d1ad527105c8af1ac0307dd8378d88dfeb2b08800d811d0bdbf813c"
+      }
+    },
+    "previous": "929b69627a4ccef62dfd8d5ae3354cf6fc9c1f35fbaafc030c7e7a2ef0d65179",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T20:06:05.615864+00:00",
+    "hash": "e4de1e8ba3cae7bcb4577894f8c3dc50097563cd9afe488a61ee9b2a492bd148"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge plan_approval in isolated replay only",
+      "subject": "eac548ac1955e111e42896c2acfdbf4271e244188ede5a1a18a9a784793be7bf"
+    },
+    "previous": "e4de1e8ba3cae7bcb4577894f8c3dc50097563cd9afe488a61ee9b2a492bd148",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T20:06:06.029524+00:00",
+    "hash": "59d36716f44ccccdb518df445df58af7035eac748f3dcee35c1d6aa0c55b0769"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Coder",
+    "details": {
+      "attempt": 3,
+      "inputs": {
+        "design": "0bc7eed63d1ad527105c8af1ac0307dd8378d88dfeb2b08800d811d0bdbf813c",
+        "plan_approval": "9d5dc495a26d4e7ca0d8ae2be61600a4b5f2b2224b4009dfd4a4a6c82be1ac6f"
+      },
+      "scenario": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "tool": "compose_candidate"
+    },
+    "previous": "59d36716f44ccccdb518df445df58af7035eac748f3dcee35c1d6aa0c55b0769",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T20:06:06.447615+00:00",
+    "hash": "4ef4e27479d08234a1038bb3abdaf9cc3aa28751ed60f55d6037bb47a0a03f54"
+  },
+  {
+    "action": "passed",
+    "agent": "Coder",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf",
+      "tool": "compose_candidate"
+    },
+    "previous": "4ef4e27479d08234a1038bb3abdaf9cc3aa28751ed60f55d6037bb47a0a03f54",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T20:06:06.452495+00:00",
+    "hash": "3417eabda341d5a59479a9fede757709065e268ea574b89fc0ee64a1cac71766"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "e2a09055571f186e1b42e5c4252e9a775315d1984b73ad1fdd90067235b13280",
+      "inputs": {
+        "implementation": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf"
+      }
+    },
+    "previous": "3417eabda341d5a59479a9fede757709065e268ea574b89fc0ee64a1cac71766",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T20:06:06.453495+00:00",
+    "hash": "42c5867ec80ee3eea811501d806a3ec3caaa07101440c7d1cc46e817f7f60ec8"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge execution_approval in isolated replay only",
+      "subject": "e2a09055571f186e1b42e5c4252e9a775315d1984b73ad1fdd90067235b13280"
+    },
+    "previous": "42c5867ec80ee3eea811501d806a3ec3caaa07101440c7d1cc46e817f7f60ec8",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T20:06:06.857453+00:00",
+    "hash": "c3c39be9b4ee951d76fa1ced4b8191d944006d687b37012fbb80e65028d7d173"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "QA",
+    "details": {
+      "attempt": 4,
+      "inputs": {
+        "execution_approval": "c1a53e162e0855aac48770cc6693346c7c2d7904aa51d5b9bb4e15e990fe3cd9",
+        "implementation": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf"
+      },
+      "scenario": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "tool": "maven_verify"
+    },
+    "previous": "c3c39be9b4ee951d76fa1ced4b8191d944006d687b37012fbb80e65028d7d173",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "qa",
+    "timestamp": "2026-11-25T20:06:07.404614+00:00",
+    "hash": "4145e50d37dfaefbdb9b1346bfcbf52c66d9c5b07c09d8e0fe758f09087b6fe0"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Security and Compliance",
+    "details": {
+      "attempt": 4,
+      "inputs": {
+        "execution_approval": "c1a53e162e0855aac48770cc6693346c7c2d7904aa51d5b9bb4e15e990fe3cd9",
+        "implementation": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf"
+      },
+      "scenario": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "tool": "security_scan"
+    },
+    "previous": "4145e50d37dfaefbdb9b1346bfcbf52c66d9c5b07c09d8e0fe758f09087b6fe0",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "security",
+    "timestamp": "2026-11-25T20:06:07.404614+00:00",
+    "hash": "2724f4f9807420292f6797cec1c11198bd418e22f18dc2d3b72216beece0ae60"
+  },
+  {
+    "action": "passed",
+    "agent": "QA",
+    "details": {
+      "duration_seconds": 30.485,
+      "output": "182163d69a239434cdc1575a53b8381492bb25e97213cf132f82a0585f38f2cf",
+      "tool": "maven_verify"
+    },
+    "previous": "2724f4f9807420292f6797cec1c11198bd418e22f18dc2d3b72216beece0ae60",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "qa",
+    "timestamp": "2026-11-25T20:06:37.896499+00:00",
+    "hash": "939a08c485733a7c9a9cfed3a56e4747dd0c192323b3881a19a31c8cd2e0bafd"
+  },
+  {
+    "action": "passed",
+    "agent": "Security and Compliance",
+    "details": {
+      "duration_seconds": 13.969,
+      "output": "b2751a1658b1eb6df054e541f489bbcef779981706b078542372a1ccfd450d3e",
+      "tool": "security_scan"
+    },
+    "previous": "939a08c485733a7c9a9cfed3a56e4747dd0c192323b3881a19a31c8cd2e0bafd",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "security",
+    "timestamp": "2026-11-25T20:06:37.897504+00:00",
+    "hash": "364e0a4e40de505991b225ad209fcc1a12c28c4191a8a6517d94808648f33780"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Technical Writer",
+    "details": {
+      "attempt": 5,
+      "inputs": {
+        "design": "0bc7eed63d1ad527105c8af1ac0307dd8378d88dfeb2b08800d811d0bdbf813c",
+        "implementation": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf",
+        "qa": "182163d69a239434cdc1575a53b8381492bb25e97213cf132f82a0585f38f2cf",
+        "requirements": "671764407840fe5cb98f56976c7be6c4ad5af38d19df4ecfedb4d678f2375210",
+        "security": "b2751a1658b1eb6df054e541f489bbcef779981706b078542372a1ccfd450d3e"
+      },
+      "scenario": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "tool": "render_docs"
+    },
+    "previous": "364e0a4e40de505991b225ad209fcc1a12c28c4191a8a6517d94808648f33780",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "documentation",
+    "timestamp": "2026-11-25T20:06:37.900168+00:00",
+    "hash": "75834368a255b7be96e7e2a441721e5e1dcf73c0d01dc13f6499b1371cc2cd31"
+  },
+  {
+    "action": "passed",
+    "agent": "Technical Writer",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "34c8827f885998c8673d265ed79afcec01bd4eb7c0bb680d339092f3b4cbc50b",
+      "tool": "render_docs"
+    },
+    "previous": "75834368a255b7be96e7e2a441721e5e1dcf73c0d01dc13f6499b1371cc2cd31",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "documentation",
+    "timestamp": "2026-11-25T20:06:37.902174+00:00",
+    "hash": "b331a51506d12c1a0a144e3fe4a38ce997d8becb1fba21d841789f527b2d347e"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Release Reviewer",
+    "details": {
+      "attempt": 6,
+      "inputs": {
+        "documentation": "34c8827f885998c8673d265ed79afcec01bd4eb7c0bb680d339092f3b4cbc50b",
+        "implementation": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf",
+        "qa": "182163d69a239434cdc1575a53b8381492bb25e97213cf132f82a0585f38f2cf",
+        "security": "b2751a1658b1eb6df054e541f489bbcef779981706b078542372a1ccfd450d3e"
+      },
+      "scenario": "1ff3b06bbf834325d0c97d0759fd73df92215e61aee156b6fe299f1e69632624",
+      "tool": "release_checklist"
+    },
+    "previous": "b331a51506d12c1a0a144e3fe4a38ce997d8becb1fba21d841789f527b2d347e",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "readiness",
+    "timestamp": "2026-11-25T20:06:37.907325+00:00",
+    "hash": "daf48b9283e533373f36d70dcaead8dc6ed948a011c7286823963362b8c86f97"
+  },
+  {
+    "action": "passed",
+    "agent": "Release Reviewer",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "3b800577e36eff3553230c59ffb3d7778431eed504397ead2dcb0f0319345a60",
+      "tool": "release_checklist"
+    },
+    "previous": "daf48b9283e533373f36d70dcaead8dc6ed948a011c7286823963362b8c86f97",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "readiness",
+    "timestamp": "2026-11-25T20:06:37.909450+00:00",
+    "hash": "27ef3197795f588fc6cec48d36abab0503be2db05e57cc01796b95758578ea6e"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "6ffb52ed8e7df99428584175c970839cda4a3869f39e28baef0c3e81d7acceac",
+      "inputs": {
+        "readiness": "3b800577e36eff3553230c59ffb3d7778431eed504397ead2dcb0f0319345a60"
+      }
+    },
+    "previous": "27ef3197795f588fc6cec48d36abab0503be2db05e57cc01796b95758578ea6e",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T20:06:37.910537+00:00",
+    "hash": "a2b4fd152154ab0b50cd6857a1c950d60ce37f711388990bc614792afabe4d39"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "checkpoint": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+      "inputs": {
+        "design": "0bc7eed63d1ad527105c8af1ac0307dd8378d88dfeb2b08800d811d0bdbf813c",
+        "documentation": "34c8827f885998c8673d265ed79afcec01bd4eb7c0bb680d339092f3b4cbc50b",
+        "execution_approval": "c1a53e162e0855aac48770cc6693346c7c2d7904aa51d5b9bb4e15e990fe3cd9",
+        "implementation": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf",
+        "plan_approval": "9d5dc495a26d4e7ca0d8ae2be61600a4b5f2b2224b4009dfd4a4a6c82be1ac6f",
+        "qa": "182163d69a239434cdc1575a53b8381492bb25e97213cf132f82a0585f38f2cf",
+        "requirements": "671764407840fe5cb98f56976c7be6c4ad5af38d19df4ecfedb4d678f2375210",
+        "requirements_approval": "64a351d7ce77693e0fd1f8d7363ec6f2328025d9986a5aef28a864a3641633ff",
+        "security": "b2751a1658b1eb6df054e541f489bbcef779981706b078542372a1ccfd450d3e"
+      },
+      "metrics_hash": "cde97c0d465576c7e0e09e5af93dd651c0889d6c6bcb04b9768804ba689028b1",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge release_approval in isolated replay only",
+      "subject": "6ffb52ed8e7df99428584175c970839cda4a3869f39e28baef0c3e81d7acceac",
+      "through": "documentation",
+      "trace_head": "b331a51506d12c1a0a144e3fe4a38ce997d8becb1fba21d841789f527b2d347e"
+    },
+    "previous": "a2b4fd152154ab0b50cd6857a1c950d60ce37f711388990bc614792afabe4d39",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T20:06:38.221334+00:00",
+    "hash": "4ea60dabb41cb731bf6568b32eb6bebdc16b8ea609751f28e74d0a3b473b71f5"
+  },
+  {
+    "action": "released",
+    "agent": "Control Plane",
+    "details": {
+      "checkpoint": "d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452",
+      "rollback": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3"
+    },
+    "previous": "4ea60dabb41cb731bf6568b32eb6bebdc16b8ea609751f28e74d0a3b473b71f5",
+    "revision": 1,
+    "run": "observability-api-docs",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T20:06:38.261309+00:00",
+    "hash": "1a572d7513ab53fad9a0daa11988172b0213c0b23751fb46a66fd721971d1319"
+  }
+]

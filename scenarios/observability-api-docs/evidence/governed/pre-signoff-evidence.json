@@ -1,0 +1,17 @@
+{
+  "checkpoint": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+  "inputs": {
+    "design": "0bc7eed63d1ad527105c8af1ac0307dd8378d88dfeb2b08800d811d0bdbf813c",
+    "documentation": "34c8827f885998c8673d265ed79afcec01bd4eb7c0bb680d339092f3b4cbc50b",
+    "execution_approval": "c1a53e162e0855aac48770cc6693346c7c2d7904aa51d5b9bb4e15e990fe3cd9",
+    "implementation": "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf",
+    "plan_approval": "9d5dc495a26d4e7ca0d8ae2be61600a4b5f2b2224b4009dfd4a4a6c82be1ac6f",
+    "qa": "182163d69a239434cdc1575a53b8381492bb25e97213cf132f82a0585f38f2cf",
+    "requirements": "671764407840fe5cb98f56976c7be6c4ad5af38d19df4ecfedb4d678f2375210",
+    "requirements_approval": "64a351d7ce77693e0fd1f8d7363ec6f2328025d9986a5aef28a864a3641633ff",
+    "security": "b2751a1658b1eb6df054e541f489bbcef779981706b078542372a1ccfd450d3e"
+  },
+  "metrics_hash": "cde97c0d465576c7e0e09e5af93dd651c0889d6c6bcb04b9768804ba689028b1",
+  "through": "documentation",
+  "trace_head": "b331a51506d12c1a0a144e3fe4a38ce997d8becb1fba21d841789f527b2d347e"
+}

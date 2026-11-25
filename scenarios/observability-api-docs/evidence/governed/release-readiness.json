@@ -1,0 +1,18 @@
+{
+  "candidate": "d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452",
+  "controls": [
+    "requirements and plan approved",
+    "authorized candidate verified and scanned",
+    "documentation generated"
+  ],
+  "deployment": "none",
+  "docs": "34c8827f885998c8673d265ed79afcec01bd4eb7c0bb680d339092f3b4cbc50b",
+  "passed": true,
+  "remaining_decision": "Final human release-readiness sign-off",
+  "review_evidence": "42c6b1bccf4acddfdd81edb60ea34d9e80eac4922b419eeca1e9d1c986648d45",
+  "rollback_to": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+  "security_disposition": {
+    "blocking": 0,
+    "reported": 0
+  }
+}

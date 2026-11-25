@@ -1,0 +1,8 @@
+[ERROR]   RequestCompletionTest.emitsTypedRedactedCompletionEvenWhenChainThrows:53 [structured completion event]
+expected: "request_completed"
+ but was: ""
+[ERROR]   SwaggerDocsTest.servesLocalUiForCanonicalOperations:36->fetch:29 [GET /docs/index.html]
+expected: 200
+ but was: 404
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0
+[INFO] BUILD FAILURE

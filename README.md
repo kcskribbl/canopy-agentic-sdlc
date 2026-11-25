@@ -111,6 +111,14 @@ To reproduce **all three demonstrations**, run `python -B engineering\replay.py 
 
 For cross-run results see [`scenarios/metrics.json`](scenarios/metrics.json). For an actual supervised run, **do not use `replay.py`**: use `control.py` in your own workspace and make each decision yourself.
 
+**Additional brownfield demonstration: Swagger UI and request telemetry.** Run the following from the repository root, using an evidence directory that does not already exist:
+
+```powershell
+python -B engineering\replay_observability.py --authorize-demo --evidence .canopy\swagger-evidence
+```
+
+The replay first publishes greenfield into a temporary workspace. It then applies the [hash-pinned proposal](scenarios/observability-api-docs/proposal) to that exact baseline, runs QA and security on the changed candidate, and exports the results. Approvals are simulated; no server or modified checkout is left running. The tests fetch the Swagger UI, its local assets and the existing OpenAPI contract over HTTP, and inspect structured completion logs on success and exception paths. To try the UI in a **retained supervised checkout**, run the [scenario](scenarios/observability-api-docs/scenario.json) after greenfield in the same workspace, approve its gates, then set `$env:DOCS_ENABLED='true'` before starting the changed service. Open `/docs/index.html`; the contract is at `/docs/openapi.yaml`. Both routes are disabled by default.
+
 ## Execution graph
 
 The diagrams are intentionally split at artifact boundaries. Read each top to bottom. The table is authoritative even in Markdown viewers without Mermaid support.
@@ -190,6 +198,27 @@ flowchart TD
 `inspect RUN design` includes work packages with prerequisite IDs, changed file paths, and requirement IDs. The coder applies these packages in topological order and rejects missing or duplicate outputs. Brownfield impact compares old and new HTTP operations, identifies the Maven module and schema changes, and lists source references from affected application classes. Those references are evidence for reviewing data flow, not a runtime call trace.
 
 Before requesting release approval, Canopy verifies the event chain and completed artifacts against recorded approvals and successful gates, then stores metrics through documentation. The readiness reviewer independently checks the security disposition and rollback checkpoint. Exported `pre-signoff-evidence.json` and `pre-signoff-metrics.json` show what the reviewer had **before** the decision; `metrics.json` includes later events such as release and rollback.
+
+## Feedback loops, human judgment and configurable controls
+
+**Canopy can advance work, but it cannot approve it.** At a pending gate, use `status RUN` to see why the run is waiting and `inspect RUN STAGE` to read the artifact. The four decisions below bind to the exact revision and artifact digest. Approval at one gate is not permission for the next.
+
+| Human checkpoint | Judgment the reviewer owns |
+|---|---|
+| Requirements | Are the assumptions acceptable and the criteria measurable? If not, `revise` the request or criteria instead of approving. |
+| Plan | Does the proposed diff solve the problem, and is its impact acceptable against this checkpoint? For brownfield work, inspect affected APIs, files and regression risk. |
+| Execution | Is this exact candidate safe to build and test in the chosen environment? Approval starts independent QA and security checks; both must pass. |
+| Release | Do the results apply to the same candidate, and is the rollback target correct? Sign-off publishes a **local snapshot**, not a production deployment. Reject if the evidence is insufficient. |
+
+| Feedback loop | What the operator controls | Evidence |
+|---|---|---|
+| Clarify and re-plan | `revise` records why the intent changed, invalidates prior stage results and starts requirements review again. Old approvals cannot authorize the revision. | [Ambiguous run: clarification, protected-path denial and revised plan](scenarios/ambiguous/evidence/AGENT_TRACE.md) |
+| Repair and verify | A failed QA or security gate stops publication. After inspecting the failure, use `recover` to re-plan against the approved requirements, or `revise` to supply a scoped fix. Both paths out of safe-stop consume the repair budget; neither waives the failed gate. | [Recovery logic and budget](engineering/control.py) |
+| Stop or undo | `stop` pauses an open run; `resume` alone cannot clear a safe-stop. After local release, `rollback` restores the previous managed snapshot only while that release is current. | [Brownfield before/after checkpoint hashes](scenarios/brownfield/evidence/RESTORATION.md) |
+
+**Where to set the boundaries:** [Control policy](policies/control.json) sets tool grants, blocked patterns and severities, and change limits. The defaults are **3 repairs per run**, 90 changed files, 6,500 changed lines and 180,000 bytes per input file. The [project manifest](projects/links.json) sets editable paths and registers exceptional patches by baseline and file hash. These inputs are captured when a run starts; a reviewer cannot approve away a blocking security finding. Use [signed review](docs/signed-review.md) when decisions must prove possession of an enrolled key.
+
+The [Swagger and telemetry trace](scenarios/observability-api-docs/evidence/governed/AGENT_TRACE.md) shows the no-repair path: four simulated decisions and both verification branches passing. It demonstrates enforcement of the checkpoints, **not** independent human judgment; use the supervised walkthrough for that.
 
 ## Autonomy, tools and policy controls
 

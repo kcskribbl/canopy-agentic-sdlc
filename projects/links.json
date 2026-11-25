@@ -4,6 +4,21 @@
   "improvement": "examples/projects/links-improvement",
   "build": "maven",
   "contract": "openapi.yaml",
+  "reviewed_patches": {
+    "observability-api-docs": {
+      "baseline": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+      "directory": "scenarios/observability-api-docs/proposal",
+      "files": {
+        "pom.xml": "b3a52f65494417daeb283308ee49bb48ef69af88d3d56a2c9e2623603326c0aa",
+        "src/main/resources/application.properties": "95b3093a8a4ff7acb2fcdecd4d3a29e3e705695c0a0300991ede3e1c5ac06a6e",
+        "src/main/java/dev/canopy/links/ApiDocs.java": "e2d66f5c25291e41cd6c156d19b62db409d27974fe82d338b77c71e1c3e73a04",
+        "src/main/java/dev/canopy/links/RequestPolicy.java": "6eacd46de294c0fc65e0c770aa8bff97deb4b62597cdf0ea02bc4693d95ddb23",
+        "src/main/resources/docs/index.html": "13884a90f78fd42dc4f7a00a9186bcf3084ae7ce3c0754651ecea730758e8672",
+        "src/test/java/dev/canopy/links/RequestCompletionTest.java": "f5de559b8992914afbe8943d2651edcb7686f259f2a7308c7b9befa77a6df3a4",
+        "src/test/java/dev/canopy/links/SwaggerDocsTest.java": "91e450223482ec98878deef2368f103777988215a58f91c7289797da1899b268"
+      }
+    }
+  },
   "required_routes": ["/api/v1/shorten", "/{code}", "/api/v1/stats/{code}"],
   "description": "Create, follow and inspect short links with bounded usage and expiry.",
   "editable_prefixes": ["src/main/java/", "src/test/java/", "src/test/resources/"],

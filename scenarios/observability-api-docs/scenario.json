@@ -1,0 +1,14 @@
+{
+  "project":"links",
+  "kind":"brownfield",
+  "reviewed_patch":"observability-api-docs",
+  "request":"Fix completion telemetry so structured events retain the response correlation ID, numeric status and duration without leaking request data. Add a locally served Swagger UI showing the canonical API document.",
+  "criteria":[
+    "A request completion event carries the response correlation ID and typed status/duration fields, including error paths; do not log raw request data.",
+    "The locally hosted Swagger UI loads the reviewed OpenAPI document and exposes the shorten, redirect and stats operations without a CDN."
+  ],
+  "acceptance_tests":{
+    "AC-001":["RequestCompletionTest.emitsTypedRedactedCompletionEvenWhenChainThrows"],
+    "AC-002":["SwaggerDocsTest.servesLocalUiForCanonicalOperations"]
+  }
+}

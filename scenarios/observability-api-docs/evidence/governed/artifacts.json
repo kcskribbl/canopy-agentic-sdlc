@@ -1,0 +1,316 @@
+{
+  "671764407840fe5cb98f56976c7be6c4ad5af38d19df4ecfedb4d678f2375210": {
+    "assumptions": [
+      "Local verification only; release sign-off does not deploy the application."
+    ],
+    "criteria": {
+      "AC-001": "A request completion event carries the response correlation ID and typed status/duration fields, including error paths; do not log raw request data.",
+      "AC-002": "The locally hosted Swagger UI loads the reviewed OpenAPI document and exposes the shorten, redirect and stats operations without a CDN."
+    },
+    "criteria_source": "scenario or operator",
+    "intent": "Fix completion telemetry so structured events retain the response correlation ID, numeric status and duration without leaking request data. Add a locally served Swagger UI showing the canonical API document.",
+    "original": "Fix completion telemetry so structured events retain the response correlation ID, numeric status and duration without leaking request data. Add a locally served Swagger UI showing the canonical API document.",
+    "questions": []
+  },
+  "0bc7eed63d1ad527105c8af1ac0307dd8378d88dfeb2b08800d811d0bdbf813c": {
+    "changes": {
+      "pom.xml": "b3a52f65494417daeb283308ee49bb48ef69af88d3d56a2c9e2623603326c0aa",
+      "src/main/java/dev/canopy/links/ApiDocs.java": "e2d66f5c25291e41cd6c156d19b62db409d27974fe82d338b77c71e1c3e73a04",
+      "src/main/java/dev/canopy/links/RequestPolicy.java": "6eacd46de294c0fc65e0c770aa8bff97deb4b62597cdf0ea02bc4693d95ddb23",
+      "src/main/resources/application.properties": "95b3093a8a4ff7acb2fcdecd4d3a29e3e705695c0a0300991ede3e1c5ac06a6e",
+      "src/main/resources/docs/index.html": "13884a90f78fd42dc4f7a00a9186bcf3084ae7ce3c0754651ecea730758e8672",
+      "src/test/java/dev/canopy/links/RequestCompletionTest.java": "f5de559b8992914afbe8943d2651edcb7686f259f2a7308c7b9befa77a6df3a4",
+      "src/test/java/dev/canopy/links/SwaggerDocsTest.java": "91e450223482ec98878deef2368f103777988215a58f91c7289797da1899b268"
+    },
+    "checkpoint": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+    "fallback": null,
+    "impact": {
+      "changed_http_operations": [],
+      "changed_schema": [],
+      "existing_files_modified": [
+        "pom.xml",
+        "src/main/java/dev/canopy/links/RequestPolicy.java",
+        "src/main/resources/application.properties"
+      ],
+      "module": "links-service",
+      "new_files": [
+        "src/main/java/dev/canopy/links/ApiDocs.java",
+        "src/main/resources/docs/index.html",
+        "src/test/java/dev/canopy/links/RequestCompletionTest.java",
+        "src/test/java/dev/canopy/links/SwaggerDocsTest.java"
+      ],
+      "regression_risk": "Re-run the unchanged baseline tests alongside new scenarios. Source dependencies are static references, not proof of runtime calls.",
+      "source_dependencies": {
+        "src/main/java/dev/canopy/links/ApiDocs.java": [],
+        "src/main/java/dev/canopy/links/RequestPolicy.java": []
+      }
+    },
+    "lines": 187,
+    "repair_feedback": null,
+    "requirement_ids": [
+      "AC-001",
+      "AC-002"
+    ],
+    "routes": {
+      "/api/links": [
+        "post"
+      ],
+      "/api/links/{code}": [
+        "get"
+      ],
+      "/api/stats": [
+        "get"
+      ],
+      "/api/v1/shorten": [
+        "post"
+      ],
+      "/api/v1/stats/{code}": [
+        "get"
+      ],
+      "/health": [
+        "get"
+      ],
+      "/r/{code}": [
+        "get"
+      ],
+      "/{code}": [
+        "get",
+        "head"
+      ]
+    },
+    "schema": [
+      "src/main/resources/db/migration/V1__legacy_links.sql",
+      "src/main/resources/db/migration/V2__link_metadata.sql"
+    ],
+    "source": "pinned external engineering change: observability-api-docs",
+    "tasks": {
+      "application": {
+        "depends_on": [
+          "configuration"
+        ],
+        "files": [
+          "src/main/java/dev/canopy/links/ApiDocs.java",
+          "src/main/java/dev/canopy/links/RequestPolicy.java"
+        ],
+        "goal": "Implement the reviewed service changes",
+        "requirements": [
+          "AC-001",
+          "AC-002"
+        ]
+      },
+      "configuration": {
+        "depends_on": [],
+        "files": [
+          "pom.xml",
+          "src/main/resources/application.properties",
+          "src/main/resources/docs/index.html"
+        ],
+        "goal": "Prepare build, runtime and operational inputs",
+        "requirements": [
+          "AC-001",
+          "AC-002"
+        ]
+      },
+      "tests": {
+        "depends_on": [
+          "application",
+          "configuration"
+        ],
+        "files": [
+          "src/test/java/dev/canopy/links/RequestCompletionTest.java",
+          "src/test/java/dev/canopy/links/SwaggerDocsTest.java"
+        ],
+        "goal": "Exercise acceptance criteria and unchanged behavior",
+        "requirements": [
+          "AC-001",
+          "AC-002"
+        ]
+      }
+    }
+  },
+  "e7562b98fda6a14891ed62d656968822f856738acd9fee19342cf0cba180bdcf": {
+    "files": {
+      ".dockerignore": "c5c6bd098f035e6b2a0b46b5f1865799d34b5a19d8bb1f566dae842fb7ffe7f0",
+      "Dockerfile": "eac1217a2e6806964adb19f543ff0a2ea78bbe03d9b2748269ced3ff1524de89",
+      "README.md": "cd7b8c209395e575d8efa26173340be797450d2eadb3b6aacf50f375dc627543",
+      "compose.yaml": "f26cadb7b1dbcae47a2ccb24b1e1266a4765aadd8e99a7d987d38928dd5a1a22",
+      "openapi.yaml": "b8d61a2833e3ed0e2ab05525ce5a0bc56ab4892fc47a6eafb98b37e672cd3661",
+      "pom.xml": "b3a52f65494417daeb283308ee49bb48ef69af88d3d56a2c9e2623603326c0aa",
+      "src/main/java/dev/canopy/links/ApiDocs.java": "e2d66f5c25291e41cd6c156d19b62db409d27974fe82d338b77c71e1c3e73a04",
+      "src/main/java/dev/canopy/links/CanopyApplication.java": "99cd23001865b85a1d58420ace193c43abe109d9040b52c640153d7a5daedcec",
+      "src/main/java/dev/canopy/links/DestinationPolicy.java": "af910e7faae717a2ed318c8d31d3e37135c5adb83cb3f8dd2bd14ce8f11e1eb9",
+      "src/main/java/dev/canopy/links/LinkCache.java": "4a7a74f2efb1ff4573826cd430345628c24cf3a1098b2b21a230bc0b8e997238",
+      "src/main/java/dev/canopy/links/LinkStore.java": "b5890b410fde0aee1ac26d7f3a037083f1dd9a6f9a3e60b5a4700034387101c6",
+      "src/main/java/dev/canopy/links/LinksController.java": "71f39ef71e886985b87cfa6e0ce1f5aaca62317f4eed1fd8adc8b13b4f8c5285",
+      "src/main/java/dev/canopy/links/PreviewController.java": "a2ba45cecc90c26fd4e70f9bbec453d73b573ba3a7a7852c9be9ca0fb32864b6",
+      "src/main/java/dev/canopy/links/RequestPolicy.java": "6eacd46de294c0fc65e0c770aa8bff97deb4b62597cdf0ea02bc4693d95ddb23",
+      "src/main/java/dev/canopy/links/StatsController.java": "b5c0ce5712dd29f7b7d0ea21895dcc15b84a69cad0e619ae24380bb9b22a8d31",
+      "src/main/java/dev/canopy/links/VersionedLinksController.java": "96dbee8487bc1ede77fe6159b560ef9f41b95c3a60ebbb52717d6961e178537b",
+      "src/main/resources/application.properties": "95b3093a8a4ff7acb2fcdecd4d3a29e3e705695c0a0300991ede3e1c5ac06a6e",
+      "src/main/resources/db/migration/V1__legacy_links.sql": "6152bcc0fc59babc3dd2dbf7761650c56df624769a017a0ab794718501eea381",
+      "src/main/resources/db/migration/V2__link_metadata.sql": "abfc4d7c61320ab63fc23942979b20ef74c5f16802dc867f6a4293bd3104f657",
+      "src/main/resources/docs/index.html": "13884a90f78fd42dc4f7a00a9186bcf3084ae7ce3c0754651ecea730758e8672",
+      "src/test/java/dev/canopy/links/CacheFallbackTest.java": "cb7c37e9e32fcf21edd00bffc5d68e4f85805d1b60cd4a07b0edea911fa7ca1f",
+      "src/test/java/dev/canopy/links/LinksTest.java": "2d08949829032ff23b64994b79a9cff0eaeb311a32cbc04d0a0e63e0e363c68f",
+      "src/test/java/dev/canopy/links/PolicyTest.java": "380f1ed705fe5e984f88e1de16412851975a57046311523a245aee789af79cb7",
+      "src/test/java/dev/canopy/links/PreviewContractTest.java": "1e06140c638e9b116fafa9034c4c13a9e82e4f3d9b737f082e063d18b4d9d5ba",
+      "src/test/java/dev/canopy/links/RequestCompletionTest.java": "f5de559b8992914afbe8943d2651edcb7686f259f2a7308c7b9befa77a6df3a4",
+      "src/test/java/dev/canopy/links/StatsTest.java": "a76884e8647abb3ebe6147fbe64e58d049ea64b031f316a73114c25ed9686f14",
+      "src/test/java/dev/canopy/links/SwaggerDocsTest.java": "91e450223482ec98878deef2368f103777988215a58f91c7289797da1899b268",
+      "src/test/java/dev/canopy/links/UpgradeTest.java": "9f0d6b47a646545823473f658f9940a4e39d7e62ae7bed8c47b925ea98e3b273",
+      "src/test/java/dev/canopy/links/VersionedLinksTest.java": "c27eebeff0d9757d800d4b0b69ea3ab92a8ac7a7c1c1a211551e2574d10547a4",
+      "src/test/resources/dev/canopy/links/preview.feature": "d5581eaf20153e083fc8f151f9e504b85dd70164857fd83fc66bcf9c500c5fe6"
+    },
+    "checkpoint": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3"
+  },
+  "182163d69a239434cdc1575a53b8381492bb25e97213cf132f82a0585f38f2cf": {
+    "acceptance_tests": {
+      "AC-001": [
+        "RequestCompletionTest.emitsTypedRedactedCompletionEvenWhenChainThrows"
+      ],
+      "AC-002": [
+        "SwaggerDocsTest.servesLocalUiForCanonicalOperations"
+      ]
+    },
+    "candidate": "d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452",
+    "counts": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 38
+    },
+    "coverage": {
+      "covered": 231,
+      "missed": 15
+    },
+    "exit": 0,
+    "goals": [
+      "clean",
+      "verify"
+    ],
+    "lint": "clean",
+    "output_hash": "a2237d76a003f68ac82aef648378471585ec92dbfa544c9c461be71c68a30b94",
+    "passing_tests": [
+      "CacheFallbackTest.sharedValuesWinAndLocalFallbackSurvivesRedisDisconnect",
+      "LinksTest.collisionsHaveAFiniteBudgetAndStorageOutagesAreNotRetried",
+      "LinksTest.rejectsInvalidDestination",
+      "LinksTest.simultaneousRedirectsPreserveDestinationAndCount",
+      "LinksTest.unknownCodeIsNotFound",
+      "PolicyTest.limitsAreIndependentAndHealthChecksAreExempt",
+      "PolicyTest.tokenBucketRefillsGraduallyAcrossMinuteBoundaries",
+      "PreviewContractTest.verifiesPreviewOverHttp",
+      "RequestCompletionTest.emitsTypedRedactedCompletionEvenWhenChainThrows",
+      "StatsTest.totalsIncludeAllLinksAndOnlySuccessfulRedirects",
+      "SwaggerDocsTest.servesLocalUiForCanonicalOperations",
+      "UpgradeTest.baselinesAndPreservesLegacyRowsWithoutResettingCounts",
+      "VersionedLinksTest.acceptsSnakeCaseAliases",
+      "VersionedLinksTest.aliasRedirectsToNormalizedDestinationAndStatsOnlyCountGet",
+      "VersionedLinksTest.generatedCodesAreDistinctAndDatabaseSequenceBacked",
+      "VersionedLinksTest.invalidRequestsAreRejected",
+      "VersionedLinksTest.rejectsNonPublicDestinationsOnBothContracts",
+      "VersionedLinksTest.warmCachedLinkExpiresAndRemainsReserved"
+    ]
+  },
+  "b2751a1658b1eb6df054e541f489bbcef779981706b078542372a1ccfd450d3e": {
+    "candidate": "d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452",
+    "exit": 0,
+    "findings": [],
+    "goals": [
+      "-Psecurity",
+      "clean",
+      "compile",
+      "com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:check"
+    ],
+    "output_hash": "d39ce628576bccbf614998fd3323253fc622ea8804953b60c9ea1c06b82930ef",
+    "scanner_report": "4edebc5ef232b021cc4587e5075bea4a7b16f9bed18a06448f8a125331452eee"
+  },
+  "34c8827f885998c8673d265ed79afcec01bd4eb7c0bb680d339092f3b4cbc50b": {
+    "ADR.md": "# Release decision\n\nRetain the accepted checkpoint `1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3` until sign-off. Test and scan isolated copies of `d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452`; failed candidates never replace the checkpoint.\n",
+    "CHANGELOG.md": "# Reviewed changes\n\n- pom.xml\n- src/main/java/dev/canopy/links/ApiDocs.java\n- src/main/java/dev/canopy/links/RequestPolicy.java\n- src/main/resources/application.properties\n- src/main/resources/docs/index.html\n- src/test/java/dev/canopy/links/RequestCompletionTest.java\n- src/test/java/dev/canopy/links/SwaggerDocsTest.java",
+    "OPENAPI.yaml": "openapi: 3.0.3\ninfo:\n  title: Canopy Links\n  version: 1.1.0\n  description: Requests return X-Correlation-ID (UUID). Per-client token buckets refill continuously on each instance. Health checks are exempt. Destinations are checked locally without DNS; localhost, internal names and non-public address literals are rejected.\nservers:\n  - url: http://127.0.0.1:8080\npaths:\n  /api/links:\n    post:\n      summary: Create a short link\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema:\n              type: object\n              required: [url]\n              properties:\n                url: {type: string, format: uri, maxLength: 4096, description: Absolute HTTP or HTTPS URL with a host}\n      responses:\n        '201':\n          description: Short link created\n          headers:\n            Location: {schema: {type: string}, description: Relative short URL}\n          content:\n            application/json:\n              schema:\n                type: object\n                required: [code, shortUrl]\n                properties:\n                  code: {type: string}\n                  shortUrl: {type: string, example: /r/012345abcdef}\n        '400': {description: Malformed request or invalid URL}\n        '429': {$ref: '#/components/responses/RateLimited'}\n        '503': {description: Code allocation exhausted or storage unavailable}\n  /api/links/{code}:\n    get:\n      summary: Preview the destination without redirecting or recording a visit\n      parameters:\n        - {name: code, in: path, required: true, schema: {type: string}}\n      responses:\n        '200':\n          description: The stored destination\n          content:\n            application/json:\n              schema:\n                type: object\n                required: [url]\n                properties:\n                  url: {type: string, format: uri}\n        '404': {description: Unknown code}\n        '410': {description: Expired code}\n        '429': {$ref: '#/components/responses/RateLimited'}\n        '503': {description: Storage unavailable}\n  /r/{code}:\n    get:\n      summary: Count a visit and redirect to the destination\n      parameters:\n        - {name: code, in: path, required: true, schema: {type: string}}\n      responses:\n        '302':\n          description: Redirect\n          headers:\n            Location: {schema: {type: string, format: uri}}\n        '404': {description: Unknown code}\n        '410': {description: Expired code}\n        '429': {$ref: '#/components/responses/RateLimited'}\n        '503': {description: Storage unavailable}\n  /api/stats:\n    get:\n      summary: Aggregate short-link statistics (stats feature)\n      responses:\n        '200':\n          description: Totals across all links\n          content:\n            application/json:\n              schema:\n                type: object\n                required: [totalLinks, totalRedirects]\n                properties:\n                  totalLinks: {type: integer, format: int64}\n                  totalRedirects: {type: integer, format: int64}\n        '429': {$ref: '#/components/responses/RateLimited'}\n        '503': {description: Storage unavailable}\n  /api/v1/shorten:\n    post:\n      summary: Create a normalized short link with an optional alias or lifetime\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema:\n              type: object\n              anyOf:\n                - {required: [url]}\n                - {required: [long_url]}\n                - {required: [originalUrl]}\n              properties:\n                long_url: {type: string, format: uri, maxLength: 4096, description: Alternate spelling of url}\n                originalUrl: {type: string, format: uri, maxLength: 4096, description: Alternate spelling of url}\n                ttl_seconds: {type: integer, format: int64, minimum: 1, maximum: 31536000, description: Alternate spelling of ttlSeconds}\n                custom_alias: {type: string, pattern: '^[A-Za-z0-9_-]{1,32}$', description: Alternate spelling of alias}\n                customAlias: {type: string, pattern: '^[A-Za-z0-9_-]{1,32}$', description: Alternate spelling of alias}\n                url: {type: string, format: uri, maxLength: 4096, description: Absolute HTTP(S) URL without user info; scheme and host are lowercased and default ports removed.}\n                alias: {type: string, pattern: '^[A-Za-z0-9_-]{1,32}$', description: 'Case-sensitive; api, r, health, error, actuator and favicon are reserved case-insensitively.'}\n                ttlSeconds: {type: integer, format: int64, minimum: 1, maximum: 31536000, description: Omit for no expiry. Expired codes are not recycled.}\n      responses:\n        '201':\n          description: Created\n          headers:\n            Location: {schema: {type: string}, description: Relative short URL}\n          content:\n            application/json:\n              schema:\n                type: object\n                required: [code, shortUrl]\n                properties:\n                  code: {type: string}\n                  shortUrl: {type: string, example: /docs}\n        '400': {description: 'Malformed request or invalid URL, alias or lifetime'}\n        '409': {description: Alias already assigned}\n        '429': {$ref: '#/components/responses/RateLimited'}\n        '503': {description: Storage unavailable or allocation exhausted}\n  /{code}:\n    parameters:\n      - {$ref: '#/components/parameters/Code'}\n    get:\n      summary: Count a visit and redirect\n      responses: &redirectResponses\n        '302':\n          description: Redirect to stored destination; Cache-Control no-store\n          headers:\n            Location: {schema: {type: string, format: uri}}\n        '404': {description: Unknown code}\n        '410': {description: Expired code}\n        '429': {$ref: '#/components/responses/RateLimited'}\n        '503': {description: Storage unavailable}\n    head:\n      summary: Get redirect headers without recording a visit\n      responses: *redirectResponses\n  /api/v1/stats/{code}:\n    parameters:\n      - {$ref: '#/components/parameters/Code'}\n    get:\n      summary: Retrieve per-link statistics including expired links\n      responses:\n        '200':\n          description: Current persistent counters and link metadata\n          content:\n            application/json:\n              schema:\n                type: object\n                required: [code, url, redirects, createdAt, expiresAt]\n                properties:\n                  code: {type: string}\n                  url: {type: string, format: uri}\n                  redirects: {type: integer, format: int64, minimum: 0}\n                  createdAt: {type: string, format: date-time}\n                  expiresAt: {type: string, format: date-time, nullable: true}\n        '404': {description: Unknown code}\n        '429': {$ref: '#/components/responses/RateLimited'}\n        '503': {description: Storage unavailable}\n  /health:\n    get:\n      summary: Check database readiness; Redis is optional\n      responses:\n        '200':\n          description: Ready\n          content:\n            application/json:\n              schema:\n                type: object\n                required: [status]\n                properties:\n                  status: {type: string, enum: [UP]}\n        '503': {description: Database unavailable}\ncomponents:\n  parameters:\n    Code: {name: code, in: path, required: true, schema: {type: string}}\n  responses:\n    RateLimited:\n      description: Token bucket depleted\n      headers:\n        Retry-After: {schema: {type: integer, minimum: 1, maximum: 60}, description: Suggested seconds before retry}\n",
+    "README.md": "# links\n\nFix completion telemetry so structured events retain the response correlation ID, numeric status and duration without leaking request data. Add a locally served Swagger UI showing the canonical API document.\n\nBuild the approved checkout with the Maven wrapper and `clean verify`.\n",
+    "requirements": [
+      "AC-001",
+      "AC-002"
+    ],
+    "security": {
+      "candidate": "d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452",
+      "exit": 0,
+      "findings": [],
+      "goals": [
+        "-Psecurity",
+        "clean",
+        "compile",
+        "com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:check"
+      ],
+      "output_hash": "d39ce628576bccbf614998fd3323253fc622ea8804953b60c9ea1c06b82930ef",
+      "scanner_report": "4edebc5ef232b021cc4587e5075bea4a7b16f9bed18a06448f8a125331452eee"
+    },
+    "verification": {
+      "acceptance_tests": {
+        "AC-001": [
+          "RequestCompletionTest.emitsTypedRedactedCompletionEvenWhenChainThrows"
+        ],
+        "AC-002": [
+          "SwaggerDocsTest.servesLocalUiForCanonicalOperations"
+        ]
+      },
+      "candidate": "d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 38
+      },
+      "coverage": {
+        "covered": 231,
+        "missed": 15
+      },
+      "exit": 0,
+      "goals": [
+        "clean",
+        "verify"
+      ],
+      "lint": "clean",
+      "output_hash": "a2237d76a003f68ac82aef648378471585ec92dbfa544c9c461be71c68a30b94",
+      "passing_tests": [
+        "CacheFallbackTest.sharedValuesWinAndLocalFallbackSurvivesRedisDisconnect",
+        "LinksTest.collisionsHaveAFiniteBudgetAndStorageOutagesAreNotRetried",
+        "LinksTest.rejectsInvalidDestination",
+        "LinksTest.simultaneousRedirectsPreserveDestinationAndCount",
+        "LinksTest.unknownCodeIsNotFound",
+        "PolicyTest.limitsAreIndependentAndHealthChecksAreExempt",
+        "PolicyTest.tokenBucketRefillsGraduallyAcrossMinuteBoundaries",
+        "PreviewContractTest.verifiesPreviewOverHttp",
+        "RequestCompletionTest.emitsTypedRedactedCompletionEvenWhenChainThrows",
+        "StatsTest.totalsIncludeAllLinksAndOnlySuccessfulRedirects",
+        "SwaggerDocsTest.servesLocalUiForCanonicalOperations",
+        "UpgradeTest.baselinesAndPreservesLegacyRowsWithoutResettingCounts",
+        "VersionedLinksTest.acceptsSnakeCaseAliases",
+        "VersionedLinksTest.aliasRedirectsToNormalizedDestinationAndStatsOnlyCountGet",
+        "VersionedLinksTest.generatedCodesAreDistinctAndDatabaseSequenceBacked",
+        "VersionedLinksTest.invalidRequestsAreRejected",
+        "VersionedLinksTest.rejectsNonPublicDestinationsOnBothContracts",
+        "VersionedLinksTest.warmCachedLinkExpiresAndRemainsReserved"
+      ]
+    }
+  },
+  "3b800577e36eff3553230c59ffb3d7778431eed504397ead2dcb0f0319345a60": {
+    "candidate": "d44ba6e5300e52b2ac28e9c6bd3ee64052227271c06cd1b61f6600f3b8e9b452",
+    "controls": [
+      "requirements and plan approved",
+      "authorized candidate verified and scanned",
+      "documentation generated"
+    ],
+    "deployment": "none",
+    "docs": "34c8827f885998c8673d265ed79afcec01bd4eb7c0bb680d339092f3b4cbc50b",
+    "passed": true,
+    "remaining_decision": "Final human release-readiness sign-off",
+    "review_evidence": "42c6b1bccf4acddfdd81edb60ea34d9e80eac4922b419eeca1e9d1c986648d45",
+    "rollback_to": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+    "security_disposition": {
+      "blocking": 0,
+      "reported": 0
+    }
+  }
+}
