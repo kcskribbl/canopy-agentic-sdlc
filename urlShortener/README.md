@@ -97,4 +97,19 @@ docker compose logs -f app
 
 Use the same curl examples at `http://127.0.0.1:8080` (or set `APP_PORT` before startup). [Compose](compose.yaml) publishes only the application on loopback. PostgreSQL uses a named volume and both backends are private to the Compose network. `docker compose down` stops the stack without deleting the database. For an existing PostgreSQL database outside Compose, set `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, and `SPRING_DATASOURCE_PASSWORD`; the database user must be able to initialize the schema. Redis is optional in either mode.
 
+**Verify both backends.** Press `Ctrl+C` to stop following the logs (the stack stays up), then use the same terminal so `DATABASE_PASSWORD` is still set. Create a fresh link and preview it once. These checks use the default cache namespace and port:
+
+```powershell
+$base = 'http://127.0.0.1:8080'
+$link = Invoke-RestMethod -Method Post "$base/api/links" -ContentType 'application/json' -Body '{"url":"https://example.org/cache-check"}'
+$code = $link.code
+Invoke-RestMethod "$base/api/links/$code"
+docker compose exec -T cache redis-cli GET "canopy-standalone:destination:$code"
+docker compose exec -T db psql -U links -d links -Atc "SELECT redirects FROM links WHERE code = '$code'"
+curl.exe -sS -D - -o NUL "$base$($link.shortUrl)"
+docker compose exec -T db psql -U links -d links -Atc "SELECT redirects FROM links WHERE code = '$code'"
+```
+
+Redis should return `https://example.org/cache-check`. PostgreSQL should report `0` after the preview and `1` after the `302` redirect. This checks the newly created link rather than relying on database-wide totals from a potentially reused volume.
+
 **Logging scope:** there is no custom per-request logger, structured JSON event, or correlation-ID filter in this module. Use HTTP status and `Location` to inspect an individual response, and `/api/stats` to verify counts. The [brownfield telemetry example](../scenarios/observability-api-docs/) demonstrates structured request logging on the enhanced workload, not this standalone app.

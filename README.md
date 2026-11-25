@@ -15,7 +15,7 @@ The **URL Shortener** is the first product built through Canopy. This Java servi
 | [Architecture and extension contract](docs/architecture.md) | How to onboard another project or build adapter without putting service logic in the scheduler. |
 | [Signed reviewer mode](docs/signed-review.md) | Opt a new workspace into key-bound decisions; the operator signs outside Canopy. Normal demo runs do not claim authenticated review. |
 | [`scenarios/`](scenarios), [input specification](SPEC.md) | Greenfield build, brownfield enhancement and bug fix, ambiguity and recovery. |
-| [`urlShortener/`](urlShortener) | Previously human-accepted application, directly buildable; [live images below](#accepted-application-in-pictures). |
+| [Standalone URL Shortener](urlShortener/README.md) | One Java service, four HTTP endpoints. [Run locally with H2](#run-the-first-product-directly) or [start PostgreSQL and Redis with Compose](urlShortener/README.md#run-with-postgresql-and-redis). Neither mode requires the control plane. |
 | [New service inputs](examples/projects/links-service), [brownfield changes](examples/projects/links-improvement) | Inputs for the full graph. Replays publish into isolated workspaces, **not** over the existing human-accepted service. |
 | [Engineering summary](docs/FINAL_ENGINEERING_SUMMARY.md) | Decisions, actual verification, boundaries and remaining risks. |
 
@@ -324,7 +324,7 @@ To refresh: run the accepted application's `clean verify` below, install Pillow 
 
 ## Run the first product directly
 
-The [standalone service guide](urlShortener/README.md) describes the API, Java packages, cache behavior, and optional PostgreSQL/Redis Compose stack. The quick start below uses embedded H2 and an in-process cache without Docker.
+Choose **H2** for the quickest local run (commands below) or **[PostgreSQL and Redis](urlShortener/README.md#run-with-postgresql-and-redis)** to exercise the shared infrastructure. Both run the same JAR and API. Only destination lookups are cached: previewing a link does not count a visit, and a redirect must increment the SQL counter even on a cache hit.
 
 The standalone `urlShortener` app has its own [OpenAPI spec](urlShortener/openapi.yaml), but it does **not** serve Swagger UI. Use this spec for its endpoints, such as `POST /api/links`. Setting `DOCS_ENABLED=true` does not add `/docs/index.html` to this app.
 
