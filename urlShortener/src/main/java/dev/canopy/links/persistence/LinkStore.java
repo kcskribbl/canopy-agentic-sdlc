@@ -1,4 +1,4 @@
-package dev.canopy.links;
+package dev.canopy.links.persistence;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -6,18 +6,17 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.TransientDataAccessResourceException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-class LinkStore {
+public class LinkStore {
     private static final int MAX_CODE_ATTEMPTS = 5;
     private final JdbcTemplate db;
 
-    LinkStore(JdbcTemplate db) {
+    public LinkStore(JdbcTemplate db) {
         this.db = db;
     }
 
-    String create(String destination) {
+    public String create(String destination) {
         for (int attempt = 0; attempt < MAX_CODE_ATTEMPTS; attempt++) {
             String code = UUID.randomUUID().toString().replace("-", "").substring(0, 12);
             try {
@@ -30,18 +29,12 @@ class LinkStore {
         throw new TransientDataAccessResourceException("Could not allocate a unique short code");
     }
 
-    @Transactional
-    public Optional<String> visit(String code) {
-        if (db.update("UPDATE links SET redirects = redirects + 1 WHERE code = ?", code) == 0) {
-            return Optional.empty();
-        }
-        return Optional.of(db.queryForObject("SELECT destination FROM links WHERE code = ?", String.class, code));
+    public boolean recordVisit(String code) {
+        return db.update("UPDATE links SET redirects = redirects + 1 WHERE code = ?", code) == 1;
     }
 
-    record Totals(long totalLinks, long totalRedirects) {}
-
-    Totals totals() {
-        return db.queryForObject("SELECT COUNT(*), COALESCE(SUM(redirects), 0) FROM links",
-                (rs, row) -> new Totals(rs.getLong(1), rs.getLong(2)));
+    public Optional<String> destination(String code) {
+        return db.query("SELECT destination FROM links WHERE code = ?", (rs, row) -> rs.getString(1), code)
+                .stream().findFirst();
     }
 }

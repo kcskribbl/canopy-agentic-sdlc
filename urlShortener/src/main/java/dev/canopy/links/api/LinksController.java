@@ -1,22 +1,20 @@
-package dev.canopy.links;
+package dev.canopy.links.api;
 
+import dev.canopy.links.service.LinkService;
 import java.net.URI;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.TransactionException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-class LinksController {
-    private final LinkStore store;
+public class LinksController {
+    private final LinkService store;
 
-    LinksController(LinkStore store) {
+    public LinksController(LinkService store) {
         this.store = store;
     }
-
     record NewLink(String url) {}
     record CreatedLink(String code, String shortUrl) {}
 
@@ -50,13 +48,5 @@ class LinksController {
         String destination = store.visit(code).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.status(HttpStatus.FOUND).cacheControl(CacheControl.noStore())
                 .location(URI.create(destination)).build();
-    }
-}
-
-@RestControllerAdvice
-class StorageErrorHandler {
-    @ExceptionHandler({DataAccessException.class, TransactionException.class})
-    ResponseEntity<Void> storageUnavailable() {
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
     }
 }

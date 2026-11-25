@@ -1,0 +1,36 @@
+services:
+  app:
+    image: eclipse-temurin:21-jre
+    command: ["java", "-jar", "/app/links.jar"]
+    volumes:
+      - ./target/links-1.0.0.jar:/app/links.jar:ro
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8080"
+    environment:
+      SERVER_ADDRESS: 0.0.0.0
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/links
+      SPRING_DATASOURCE_USERNAME: links
+      SPRING_DATASOURCE_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD}
+      REDIS_ENABLED: "true"
+      SPRING_DATA_REDIS_HOST: cache
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: links
+      POSTGRES_USER: links
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD}
+    volumes:
+      - links-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U links -d links"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  cache:
+    image: redis:7
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "64mb", "--maxmemory-policy", "allkeys-lru"]
+volumes:
+  links-db:

@@ -7,6 +7,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.canopy.links.api.LinksController;
+import dev.canopy.links.api.StorageErrorHandler;
+import dev.canopy.links.cache.DestinationCache;
+import dev.canopy.links.persistence.LinkStore;
+import dev.canopy.links.service.LinkService;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -78,7 +83,8 @@ class LinksTest {
     @Test
     void collisionsHaveAFiniteBudgetAndStorageOutagesAreNotRetried() throws Exception {
         JdbcTemplate failingDb = mock(JdbcTemplate.class);
-        MockMvc api = MockMvcBuilders.standaloneSetup(new LinksController(new LinkStore(failingDb)))
+        MockMvc api = MockMvcBuilders.standaloneSetup(new LinksController(
+                        new LinkService(new LinkStore(failingDb), mock(DestinationCache.class))))
                 .setControllerAdvice(new StorageErrorHandler()).build();
         var collision = new DuplicateKeyException("collision");
         when(failingDb.update(anyString(), anyString(), anyString()))

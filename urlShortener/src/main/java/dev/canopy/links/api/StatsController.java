@@ -1,18 +1,19 @@
-package dev.canopy.links;
+package dev.canopy.links.api;
 
+import dev.canopy.links.analytics.LinkStatistics;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 class StatsController {
-    private final LinkStore store;
+    private final LinkStatistics store;
 
-    StatsController(LinkStore store) {
+    StatsController(LinkStatistics store) {
         this.store = store;
     }
 
     @GetMapping("/api/stats")
-    LinkStore.Totals stats() {
+    LinkStatistics.Totals stats() {
         return store.totals();
     }
 }

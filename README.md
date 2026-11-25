@@ -324,6 +324,8 @@ To refresh: run the accepted application's `clean verify` below, install Pillow 
 
 ## Run the first product directly
 
+The [standalone service guide](urlShortener/README.md) describes the API, Java packages, cache behavior, and optional PostgreSQL/Redis Compose stack. The quick start below uses embedded H2 and an in-process cache without Docker.
+
 The standalone `urlShortener` app has its own [OpenAPI spec](urlShortener/openapi.yaml), but it does **not** serve Swagger UI. Use this spec for its endpoints, such as `POST /api/links`. Setting `DOCS_ENABLED=true` does not add `/docs/index.html` to this app.
 
 The [spec under `examples/projects/links-service`](examples/projects/links-service/openapi.yaml) belongs to the blueprint Canopy uses to build the **enhanced** service, which also supports `POST /api/v1/shorten`. The [Swagger brownfield scenario](scenarios/observability-api-docs/scenario.json) adds the UI to the workspace copy of `urlShortener` without changing the standalone module. In that changed service, enable `DOCS_ENABLED=true` to serve `/docs/index.html` and `/docs/openapi.yaml`.
