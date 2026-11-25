@@ -1,4 +1,4 @@
-# Canopy - Agentic AI
+# Canopy - Agentic AI Platform
 
 **Canopy** is the fictional brand name for a governed, multi-agent AI platform for the software development lifecycle. Whether a requirement is clear or needs clarification, the platform guides it toward a reviewable change, with evidence of what was built, why, and how it was verified.
 
