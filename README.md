@@ -1,37 +1,16 @@
 # Canopy - Agentic AI Platform
 
 ```text
-+--------------------------------------------------------------+
-|                  AA   GGG EEEE N  N TTT III  CCC             |
-|                A  A G    E    NN N  T   I  C                 |
-|               AAAA G GG EEE  N NN  T   I  C                  |
-|              A  A G  G E    N  N  T   I  C                   |
-|             A  A  GGG EEEE N  N  T  III  CCC                 |
-|                                                              |
-|              SSS  OO  FFFF TTT W   W  AA  RRR  EEEE          |
-|            S    O  O F     T  W   W A  A R  R E              |
-|            SS  O  O FFF   T  W W W AAAA RRR  EEE             |
-|             S O  O F     T  W W W A  A R R  E                |
-|         SSS   OO  F     T   W W  A  A R  R EEEE              |
-|                                                              |
-|       EEEE N  N  GGG III N  N EEEE EEEE RRR  III N  N  GGG   |
-|      E    NN N G     I  NN N E    E    R  R  I  NN N G       |
-|     EEE  N NN G GG  I  N NN EEE  EEE  RRR   I  N NN G GG     |
-|    E    N  N G  G  I  N  N E    E    R R   I  N  N G  G      |
-|   EEEE N  N  GGG III N  N EEEE EEEE R  R III N  N  GGG       |
-|                                                              |
-|                    SSS Y Y  SSS TTT EEEE M   M               |
-|                  S    Y Y S     T  E    MM MM                |
-|                  SS   Y   SS   T  EEE  M M M                 |
-|                   S  Y     S  T  E    M   M                  |
-|               SSS   Y  SSS   T  EEEE M   M                   |
-|                                                              |
-|     U  U RRR  L        SSS H  H  OO  RRR  TTT N  N EEEE RRR  |
-|    U  U R  R L       S    H  H O  O R  R  T  NN N E    R  R  |
-|   U  U RRR  L        SS  HHHH O  O RRR   T  N NN EEE  RRR    |
-|  U  U R R  L          S H  H O  O R R   T  N  N E    R R     |
-|  UU  R  R LLLL    SSS  H  H  OO  R  R  T  N  N EEEE R  R     |
-+--------------------------------------------------------------+
++----------------------------------------------------+
+|   AAA     GGGG   EEEEE   N   N   TTTTT   III   CCC |
+|  A   A   G       E       NN  N     T      I   C    |
+|  AAAAA   G  GG   EEEE    N N N     T      I   C    |
+|  A   A   G   G   E       N  NN     T      I   C    |
+|  A   A    GGGG   EEEEE   N   N     T     III   CCC |
+|                                                    |
+|             SOFTWARE ENGINEERING SYSTEM            |
+|                    URL SHORTNER                    |
++----------------------------------------------------+
 ```
 
 **Canopy** is the fictional brand name for a governed, multi-agent AI platform for the software development lifecycle. Whether a requirement is clear or needs clarification, the platform guides it toward a reviewable change, with evidence of what was built, why, and how it was verified.
