@@ -1,0 +1,58 @@
+{
+  "attempts": {
+    "approval_requested": 3,
+    "approved": 3,
+    "created": 1,
+    "passed": 6,
+    "tool_requested": 6
+  },
+  "elapsed_seconds": 33.310947,
+  "human_interventions": 3,
+  "mttr_seconds": null,
+  "recovery_durations_seconds": [],
+  "released_at_least_once": false,
+  "replans": 0,
+  "retries": 0,
+  "rollbacks": 0,
+  "stage_latency_seconds": {
+    "design": {
+      "attempts": 1,
+      "mean": 0.078,
+      "total": 0.078
+    },
+    "documentation": {
+      "attempts": 1,
+      "mean": 0.0,
+      "total": 0.0
+    },
+    "implementation": {
+      "attempts": 1,
+      "mean": 0.0,
+      "total": 0.0
+    },
+    "qa": {
+      "attempts": 1,
+      "mean": 31.594,
+      "total": 31.594
+    },
+    "requirements": {
+      "attempts": 1,
+      "mean": 0.0,
+      "total": 0.0
+    },
+    "security": {
+      "attempts": 1,
+      "mean": 15.219,
+      "total": 15.219
+    }
+  },
+  "stage_success_rates": {
+    "design": 1.0,
+    "documentation": 1.0,
+    "implementation": 1.0,
+    "qa": 1.0,
+    "requirements": 1.0,
+    "security": 1.0
+  },
+  "unrecovered_gates": []
+}

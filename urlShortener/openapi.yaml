@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: Canopy Links
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:8080
+paths:
+  /api/links:
+    post:
+      summary: Create a short link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url]
+              properties:
+                url: {type: string, format: uri, maxLength: 4096, description: Absolute HTTP or HTTPS URL with a host}
+      responses:
+        '201':
+          description: Short link created
+          headers:
+            Location: {schema: {type: string}, description: Relative short URL}
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [code, shortUrl]
+                properties:
+                  code: {type: string}
+                  shortUrl: {type: string, example: /r/012345abcdef}
+        '400': {description: Malformed request or invalid URL}
+        '503': {description: Code allocation exhausted or storage unavailable}
+  /api/links/{code}:
+    get:
+      summary: Preview the destination without redirecting or recording a visit
+      parameters:
+        - {name: code, in: path, required: true, schema: {type: string}}
+      responses:
+        '200':
+          description: The stored destination
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [url]
+                properties:
+                  url: {type: string, format: uri}
+        '404': {description: Unknown code}
+        '503': {description: Storage unavailable}
+  /r/{code}:
+    get:
+      summary: Count a visit and redirect to the destination
+      parameters:
+        - {name: code, in: path, required: true, schema: {type: string}}
+      responses:
+        '302':
+          description: Redirect
+          headers:
+            Location: {schema: {type: string, format: uri}}
+        '404': {description: Unknown code}
+        '503': {description: Storage unavailable}
+  /api/stats:
+    get:
+      summary: Aggregate short-link statistics (stats feature)
+      responses:
+        '200':
+          description: Totals across all links
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [totalLinks, totalRedirects]
+                properties:
+                  totalLinks: {type: integer, format: int64}
+                  totalRedirects: {type: integer, format: int64}
+        '503': {description: Storage unavailable}

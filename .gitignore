@@ -1,0 +1,14 @@
+.canopy/
+scenarios/.replay-*/
+**/.replay-*/
+.live-*/
+docs/product/canopy-product-r2/
+**/target/
+**/__pycache__/
+*.mv.db
+*.trace.db
+.venv/
+*.sig
+*.pem
+*.key
+.env

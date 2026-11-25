@@ -1,0 +1,15 @@
+{
+  "project": "links",
+  "kind": "greenfield",
+  "request": "Build a short link service with durable HTTP(S) links, optional aliases and expiry, redirects, statistics and a health endpoint.",
+  "criteria": [
+    "POST /api/v1/shorten accepts a valid destination and returns 201 with a code and shortUrl. A supplied alias resolves to its stored destination.",
+    "GET /{code} redirects a live link (302), rejects an unknown code (404) and rejects an expired link (410). HEAD /{code} does not increment redirect counts.",
+    "GET /api/v1/stats/{code} reports the stored destination and redirect count; /health reports UP. Preserve the legacy link, preview and aggregate stats endpoints."
+  ],
+  "acceptance_tests": {
+    "AC-001":["VersionedLinksTest.aliasRedirectsToNormalizedDestinationAndStatsOnlyCountGet","VersionedLinksTest.acceptsSnakeCaseAliases"],
+    "AC-002":["VersionedLinksTest.warmCachedLinkExpiresAndRemainsReserved","VersionedLinksTest.aliasRedirectsToNormalizedDestinationAndStatsOnlyCountGet"],
+    "AC-003":["PreviewContractTest.verifiesPreviewOverHttp","StatsTest.totalsIncludeAllLinksAndOnlySuccessfulRedirects","PolicyTest.limitsAreIndependentAndHealthChecksAreExempt"]
+  }
+}

@@ -1,0 +1,203 @@
+openapi: 3.0.3
+info:
+  title: Canopy Links
+  version: 1.1.0
+  description: Requests return X-Correlation-ID (UUID). Per-client token buckets refill continuously on each instance. Health checks are exempt. Destinations are checked locally without DNS; localhost, internal names and non-public address literals are rejected.
+servers:
+  - url: http://127.0.0.1:8080
+paths:
+  /api/links:
+    post:
+      summary: Create a short link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url]
+              properties:
+                url: {type: string, format: uri, maxLength: 4096, description: Absolute HTTP or HTTPS URL with a host}
+      responses:
+        '201':
+          description: Short link created
+          headers:
+            Location: {schema: {type: string}, description: Relative short URL}
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [code, shortUrl]
+                properties:
+                  code: {type: string}
+                  shortUrl: {type: string, example: /r/012345abcdef}
+        '400': {description: Malformed request or invalid URL}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Code allocation exhausted or storage unavailable}
+  /api/links/{code}:
+    get:
+      summary: Preview the destination without redirecting or recording a visit
+      parameters:
+        - {name: code, in: path, required: true, schema: {type: string}}
+      responses:
+        '200':
+          description: The stored destination
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [url]
+                properties:
+                  url: {type: string, format: uri}
+        '404': {description: Unknown code}
+        '410': {description: Expired code}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Storage unavailable}
+  /r/{code}:
+    head:
+      summary: Return redirect headers without incrementing the link counter
+      parameters:
+        - {$ref: '#/components/parameters/Code'}
+      responses:
+        '302':
+          description: Same Location and no-store policy as GET
+          headers:
+            Location: {schema: {type: string, format: uri}}
+        '404': {description: Unknown code}
+        '410': {description: Expired code}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Storage unavailable}
+    get:
+      summary: Count a visit and redirect to the destination
+      parameters:
+        - {name: code, in: path, required: true, schema: {type: string}}
+      responses:
+        '302':
+          description: Redirect
+          headers:
+            Location: {schema: {type: string, format: uri}}
+        '404': {description: Unknown code}
+        '410': {description: Expired code}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Storage unavailable}
+  /api/stats:
+    get:
+      summary: Aggregate short-link statistics (stats feature)
+      responses:
+        '200':
+          description: Totals across all links
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [totalLinks, totalRedirects]
+                properties:
+                  totalLinks: {type: integer, format: int64}
+                  totalRedirects: {type: integer, format: int64}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Storage unavailable}
+  /api/v1/shorten:
+    post:
+      summary: Create a normalized short link with an optional alias or lifetime
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              anyOf:
+                - {required: [url]}
+                - {required: [long_url]}
+                - {required: [originalUrl]}
+              properties:
+                long_url: {type: string, format: uri, maxLength: 4096, description: Alternate spelling of url}
+                originalUrl: {type: string, format: uri, maxLength: 4096, description: Alternate spelling of url}
+                ttl_seconds: {type: integer, format: int64, minimum: 1, maximum: 31536000, description: Alternate spelling of ttlSeconds}
+                custom_alias: {type: string, pattern: '^[A-Za-z0-9_-]{1,32}$', description: Alternate spelling of alias}
+                customAlias: {type: string, pattern: '^[A-Za-z0-9_-]{1,32}$', description: Alternate spelling of alias}
+                url: {type: string, format: uri, maxLength: 4096, description: Absolute HTTP(S) URL without user info; scheme and host are lowercased and default ports removed.}
+                alias: {type: string, pattern: '^[A-Za-z0-9_-]{1,32}$', description: 'Case-sensitive; api, r, health, error, actuator and favicon are reserved case-insensitively.'}
+                ttlSeconds: {type: integer, format: int64, minimum: 1, maximum: 31536000, description: Omit for no expiry. Expired codes are not recycled.}
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location: {schema: {type: string}, description: Relative short URL}
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [code, shortUrl]
+                properties:
+                  code: {type: string}
+                  shortUrl: {type: string, example: /docs}
+        '400': {description: 'Malformed request or invalid URL, alias or lifetime'}
+        '409': {description: Alias already assigned}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Storage unavailable or allocation exhausted}
+  /{code}:
+    parameters:
+      - {$ref: '#/components/parameters/Code'}
+    get:
+      summary: Count a visit and redirect
+      responses: &redirectResponses
+        '302':
+          description: Redirect to stored destination; Cache-Control no-store
+          headers:
+            Location: {schema: {type: string, format: uri}}
+        '404': {description: Unknown code}
+        '410': {description: Expired code}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Storage unavailable}
+    head:
+      summary: Get redirect headers without recording a visit
+      responses: *redirectResponses
+  /api/v1/stats/{code}:
+    parameters:
+      - {$ref: '#/components/parameters/Code'}
+    get:
+      summary: Retrieve per-link statistics including expired links
+      responses:
+        '200':
+          description: Current persistent counters and link metadata
+          headers:
+            Cache-Control: {schema: {type: string}, description: 'private and no-store'}
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [code, url, redirects, createdAt, expiresAt]
+                properties:
+                  code: {type: string}
+                  url: {type: string, format: uri}
+                  redirects: {type: integer, format: int64, minimum: 0}
+                  createdAt: {type: string, format: date-time}
+                  expiresAt: {type: string, format: date-time, nullable: true}
+        '404':
+          description: Unknown code
+          headers:
+            Cache-Control: {schema: {type: string}, description: 'private and no-store'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+        '503': {description: Storage unavailable}
+  /health:
+    get:
+      summary: Check database readiness; Redis is optional
+      responses:
+        '200':
+          description: Ready
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: {type: string, enum: [UP]}
+        '503': {description: Database unavailable}
+components:
+  parameters:
+    Code: {name: code, in: path, required: true, schema: {type: string}}
+  responses:
+    RateLimited:
+      description: Token bucket depleted
+      headers:
+        Retry-After: {schema: {type: integer, minimum: 1, maximum: 60}, description: Suggested seconds before retry}

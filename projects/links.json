@@ -1,0 +1,11 @@
+{
+  "checkout": "urlShortener",
+  "blueprint": "examples/projects/links-service",
+  "improvement": "examples/projects/links-improvement",
+  "build": "maven",
+  "contract": "openapi.yaml",
+  "required_routes": ["/api/v1/shorten", "/{code}", "/api/v1/stats/{code}"],
+  "description": "Create, follow and inspect short links with bounded usage and expiry.",
+  "editable_prefixes": ["src/main/java/", "src/test/java/", "src/test/resources/"],
+  "extra_files": ["openapi.yaml", "Dockerfile", "docker-compose.yml", "compose.yaml", "compose.yml", "docker-compose.yaml", ".dockerignore", "README.md"]
+}

@@ -1,0 +1,15 @@
+{
+  "project": "links",
+  "kind": "brownfield",
+  "request": "Modify the accepted links service: prevent caching of per-link statistics and fix the legacy redirect endpoint counting HEAD as a visit.",
+  "criteria": [
+    "GET /api/v1/stats/{code} for a live link includes Cache-Control directives private and no-store.",
+    "HEAD /r/{code} preserves the redirect status and Location of a live link without incrementing its visit count. A subsequent GET still increments the count.",
+    "The existing creation, resolution, reporting and expiry behaviors continue to pass their regression checks."
+  ],
+  "acceptance_tests": {
+    "AC-001":["ImprovementTest.bothSuccessfulAndMissingStatsHavePrivateNoStorePolicy"],
+    "AC-002":["ImprovementTest.legacyHeadChecksTheLinkWithoutRecordingAVisit"],
+    "AC-003":["VersionedLinksTest.warmCachedLinkExpiresAndRemainsReserved","PreviewContractTest.verifiesPreviewOverHttp"]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "max_repairs": 3,
+  "max_files": 90,
+  "max_changed_lines": 6500,
+  "max_file_bytes": 180000,
+  "blocked_severities": ["high", "critical"],
+  "blocked_source_patterns": [
+    {"id":"LOG-001","severity":"high","description":"Do not log raw authorization headers or full request URLs","expression":"(?i)(?:LOG|LOGGER)\\.(?:info|warn|error|debug)\\([^;]*(?:getRequestURL\\(|getQueryString\\(|getHeader\\(\"Authorization\")"},
+    {"id":"SECRET-001","severity":"high","description":"No inline private keys in application source","expression":"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"}
+  ],
+  "agents": {
+    "Requirements Analyst": ["normalize"],
+    "Architect": ["inspect_project"],
+    "Coder": ["compose_candidate"],
+    "QA": ["maven_verify"],
+    "Security and Compliance": ["security_scan"],
+    "Technical Writer": ["render_docs"],
+    "Release Reviewer": ["release_checklist"]
+  }
+}

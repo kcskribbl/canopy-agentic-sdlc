@@ -1,0 +1,28 @@
+# Reviewed changes
+
+- .dockerignore
+- Dockerfile
+- README.md
+- compose.yaml
+- openapi.yaml
+- pom.xml
+- src/main/java/dev/canopy/links/CanopyApplication.java
+- src/main/java/dev/canopy/links/DestinationPolicy.java
+- src/main/java/dev/canopy/links/LinkCache.java
+- src/main/java/dev/canopy/links/LinkStore.java
+- src/main/java/dev/canopy/links/LinksController.java
+- src/main/java/dev/canopy/links/PreviewController.java
+- src/main/java/dev/canopy/links/RequestPolicy.java
+- src/main/java/dev/canopy/links/StatsController.java
+- src/main/java/dev/canopy/links/VersionedLinksController.java
+- src/main/resources/application.properties
+- src/main/resources/db/migration/V1__legacy_links.sql
+- src/main/resources/db/migration/V2__link_metadata.sql
+- src/test/java/dev/canopy/links/CacheFallbackTest.java
+- src/test/java/dev/canopy/links/LinksTest.java
+- src/test/java/dev/canopy/links/PolicyTest.java
+- src/test/java/dev/canopy/links/PreviewContractTest.java
+- src/test/java/dev/canopy/links/StatsTest.java
+- src/test/java/dev/canopy/links/UpgradeTest.java
+- src/test/java/dev/canopy/links/VersionedLinksTest.java
+- src/test/resources/dev/canopy/links/preview.feature

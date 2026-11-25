@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/links
+      DATABASE_USER: links
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:?Set a local database password}
+      REDIS_ENABLED: "true"
+      REDIS_URL: redis://cache:6379
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: links
+      POSTGRES_USER: links
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Set a local database password}
+    volumes:
+      - links-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U links -d links"]
+      interval: 3s
+      retries: 20
+      timeout: 3s
+  cache:
+    image: redis:7-alpine
+volumes:
+  links-db:

@@ -1,0 +1,395 @@
+[
+  {
+    "action": "created",
+    "agent": "Control Plane",
+    "details": {
+      "baseline": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "input": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "policy": "f3f5defc3266c21459ccadfcaa9d06505969d5d53e31c947a7a73a3602974c47"
+    },
+    "previous": null,
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "intake",
+    "timestamp": "2026-11-25T19:48:46.974575+00:00",
+    "hash": "48b1786647c71bac7d3f072051b1854c0ca3ebb3cc2cc5eb7bd5a46c0c1ea942"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Requirements Analyst",
+    "details": {
+      "attempt": 1,
+      "inputs": {},
+      "scenario": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "tool": "normalize"
+    },
+    "previous": "48b1786647c71bac7d3f072051b1854c0ca3ebb3cc2cc5eb7bd5a46c0c1ea942",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T19:48:46.975078+00:00",
+    "hash": "4f42be96aa1e50e7e46e7bff8a71e5fa1a518c7274434efdf642741db7bba0cd"
+  },
+  {
+    "action": "passed",
+    "agent": "Requirements Analyst",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "f275be07c52e031b8ed958c57f7eb6ebd0394b2b242ffd20cc4d416533d349e1",
+      "tool": "normalize"
+    },
+    "previous": "4f42be96aa1e50e7e46e7bff8a71e5fa1a518c7274434efdf642741db7bba0cd",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T19:48:46.977084+00:00",
+    "hash": "7f66ae7b76cd44bd910a2cd32c2795e5c24d0134f00d080860f3abbe755f90d1"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "c40979ac89fb96efa034a39b538954f17e70391cfcb7c74d7be2bc91e35b63df",
+      "inputs": {
+        "requirements": "f275be07c52e031b8ed958c57f7eb6ebd0394b2b242ffd20cc4d416533d349e1"
+      }
+    },
+    "previous": "7f66ae7b76cd44bd910a2cd32c2795e5c24d0134f00d080860f3abbe755f90d1",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T19:48:46.977084+00:00",
+    "hash": "d7adbf194194af9b0f17d1a89c9b2fafc516f5466eac2af9f8a0dd8a8f266228"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge requirements_approval in isolated replay only",
+      "subject": "c40979ac89fb96efa034a39b538954f17e70391cfcb7c74d7be2bc91e35b63df"
+    },
+    "previous": "d7adbf194194af9b0f17d1a89c9b2fafc516f5466eac2af9f8a0dd8a8f266228",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T19:48:47.247195+00:00",
+    "hash": "ac67732bb0d0745e41f9787b99177d7945b85adb26d59afd4c268099f1836917"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Architect",
+    "details": {
+      "attempt": 2,
+      "inputs": {
+        "requirements": "f275be07c52e031b8ed958c57f7eb6ebd0394b2b242ffd20cc4d416533d349e1",
+        "requirements_approval": "f30d95ef328658710dff782947e488ad4441b5f00d43040776646553a8489197"
+      },
+      "scenario": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "tool": "inspect_project"
+    },
+    "previous": "ac67732bb0d0745e41f9787b99177d7945b85adb26d59afd4c268099f1836917",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "design",
+    "timestamp": "2026-11-25T19:48:47.545242+00:00",
+    "hash": "343aa348ac6fd49bf1f48aeb2e0074d6cfd81f1fac036987a5da794bd2c7b06b"
+  },
+  {
+    "action": "passed",
+    "agent": "Architect",
+    "details": {
+      "duration_seconds": 0.078,
+      "output": "76dd65a7ecc6e260ff61f8e6ebf87d50e20e440201461a2ca21c7e426e86dab2",
+      "tool": "inspect_project"
+    },
+    "previous": "343aa348ac6fd49bf1f48aeb2e0074d6cfd81f1fac036987a5da794bd2c7b06b",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "design",
+    "timestamp": "2026-11-25T19:48:47.636137+00:00",
+    "hash": "f027124b129122fecd3a9452419e76cc44072ad9ca51cae68ab455e5ebccbf67"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "dcb25d3b01e3683aaa68f8123048e5a98432bc3be3ae3085cb92f81f4b78580b",
+      "inputs": {
+        "design": "76dd65a7ecc6e260ff61f8e6ebf87d50e20e440201461a2ca21c7e426e86dab2"
+      }
+    },
+    "previous": "f027124b129122fecd3a9452419e76cc44072ad9ca51cae68ab455e5ebccbf67",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T19:48:47.636137+00:00",
+    "hash": "e6ed6c23c7c906f9efdb32a664fc8f936da39491c31201a16c82e0ef55957e87"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge plan_approval in isolated replay only",
+      "subject": "dcb25d3b01e3683aaa68f8123048e5a98432bc3be3ae3085cb92f81f4b78580b"
+    },
+    "previous": "e6ed6c23c7c906f9efdb32a664fc8f936da39491c31201a16c82e0ef55957e87",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T19:48:47.922363+00:00",
+    "hash": "91792bd66bb91d12704e2054889a07910d989d787a11290a9cdefc57d0e63097"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Coder",
+    "details": {
+      "attempt": 3,
+      "inputs": {
+        "design": "76dd65a7ecc6e260ff61f8e6ebf87d50e20e440201461a2ca21c7e426e86dab2",
+        "plan_approval": "41337f8c1a8649e02be8e74b50e5e2ab1558091089f669f128163783a427cd57"
+      },
+      "scenario": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "tool": "compose_candidate"
+    },
+    "previous": "91792bd66bb91d12704e2054889a07910d989d787a11290a9cdefc57d0e63097",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T19:48:48.174442+00:00",
+    "hash": "b10516189e220fcab235282e27d34de9bac0f558990d473cf55330af2dc5ab8b"
+  },
+  {
+    "action": "passed",
+    "agent": "Coder",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "923b02283a3713a20eb3c2b7f001b1c14597d3d426a84033bc40945539b4329a",
+      "tool": "compose_candidate"
+    },
+    "previous": "b10516189e220fcab235282e27d34de9bac0f558990d473cf55330af2dc5ab8b",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T19:48:48.178349+00:00",
+    "hash": "d0ed5f5c4f56c68e4ccd0e9bb6f75b22b40e60879ff71712bbc3455920c0c094"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "9710cdcc1f75fae6c378209f325571719ba8fe3c29d0d1d0e548fe7a0f536ef5",
+      "inputs": {
+        "implementation": "923b02283a3713a20eb3c2b7f001b1c14597d3d426a84033bc40945539b4329a"
+      }
+    },
+    "previous": "d0ed5f5c4f56c68e4ccd0e9bb6f75b22b40e60879ff71712bbc3455920c0c094",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T19:48:48.179352+00:00",
+    "hash": "eb870baf4d8aef81bdca2b7d7b68d44bea18b1143cf184d66445568949604b70"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge execution_approval in isolated replay only",
+      "subject": "9710cdcc1f75fae6c378209f325571719ba8fe3c29d0d1d0e548fe7a0f536ef5"
+    },
+    "previous": "eb870baf4d8aef81bdca2b7d7b68d44bea18b1143cf184d66445568949604b70",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T19:48:48.426511+00:00",
+    "hash": "ee672997351e3f3b1515bb410aac708cfbab2d855e06a0a49d13a8d41f704167"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "QA",
+    "details": {
+      "attempt": 4,
+      "inputs": {
+        "execution_approval": "200555f4fdcddbb400fca735090c1ddce9e871271ae4aff1d349ebba3d12732c",
+        "implementation": "923b02283a3713a20eb3c2b7f001b1c14597d3d426a84033bc40945539b4329a"
+      },
+      "scenario": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "tool": "maven_verify"
+    },
+    "previous": "ee672997351e3f3b1515bb410aac708cfbab2d855e06a0a49d13a8d41f704167",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "qa",
+    "timestamp": "2026-11-25T19:48:48.673603+00:00",
+    "hash": "65f85c70313ba5c181a9637c45e47cdb09009d63800435c90c64225ff2f6b872"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Security and Compliance",
+    "details": {
+      "attempt": 4,
+      "inputs": {
+        "execution_approval": "200555f4fdcddbb400fca735090c1ddce9e871271ae4aff1d349ebba3d12732c",
+        "implementation": "923b02283a3713a20eb3c2b7f001b1c14597d3d426a84033bc40945539b4329a"
+      },
+      "scenario": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "tool": "security_scan"
+    },
+    "previous": "65f85c70313ba5c181a9637c45e47cdb09009d63800435c90c64225ff2f6b872",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "security",
+    "timestamp": "2026-11-25T19:48:48.673603+00:00",
+    "hash": "65aae80720e81f6a94f23e89a47832d80f97882af1794ce464d00ce143859ab0"
+  },
+  {
+    "action": "passed",
+    "agent": "QA",
+    "details": {
+      "duration_seconds": 31.594,
+      "output": "6632cc871db605ebfb031d3b835aafed2daf32e58de47e877d5f79ec11b91c87",
+      "tool": "maven_verify"
+    },
+    "previous": "65aae80720e81f6a94f23e89a47832d80f97882af1794ce464d00ce143859ab0",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "qa",
+    "timestamp": "2026-11-25T19:49:20.281200+00:00",
+    "hash": "4865659dfc42fb50be3ba11e3f4c8b723fda932181aa8bbcba0ebef249316be8"
+  },
+  {
+    "action": "passed",
+    "agent": "Security and Compliance",
+    "details": {
+      "duration_seconds": 15.219,
+      "output": "bd118b3c536b12caecbeb0d41093d47f1d438c880d1d179287520740d052c5f8",
+      "tool": "security_scan"
+    },
+    "previous": "4865659dfc42fb50be3ba11e3f4c8b723fda932181aa8bbcba0ebef249316be8",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "security",
+    "timestamp": "2026-11-25T19:49:20.281200+00:00",
+    "hash": "c251797cfec99be77bd4790c2ac45c5127cf77bd192024bb54ab6582c7a7cb6b"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Technical Writer",
+    "details": {
+      "attempt": 5,
+      "inputs": {
+        "design": "76dd65a7ecc6e260ff61f8e6ebf87d50e20e440201461a2ca21c7e426e86dab2",
+        "implementation": "923b02283a3713a20eb3c2b7f001b1c14597d3d426a84033bc40945539b4329a",
+        "qa": "6632cc871db605ebfb031d3b835aafed2daf32e58de47e877d5f79ec11b91c87",
+        "requirements": "f275be07c52e031b8ed958c57f7eb6ebd0394b2b242ffd20cc4d416533d349e1",
+        "security": "bd118b3c536b12caecbeb0d41093d47f1d438c880d1d179287520740d052c5f8"
+      },
+      "scenario": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "tool": "render_docs"
+    },
+    "previous": "c251797cfec99be77bd4790c2ac45c5127cf77bd192024bb54ab6582c7a7cb6b",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "documentation",
+    "timestamp": "2026-11-25T19:49:20.283705+00:00",
+    "hash": "554f85895996673708db3b8b8dfa8d994fbadc3ad010bcc97d128df463fdc386"
+  },
+  {
+    "action": "passed",
+    "agent": "Technical Writer",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "3ed78a7f7e9bf3f478b9353924d55a5efd9914e0d773c722a4cd3838b71a2138",
+      "tool": "render_docs"
+    },
+    "previous": "554f85895996673708db3b8b8dfa8d994fbadc3ad010bcc97d128df463fdc386",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "documentation",
+    "timestamp": "2026-11-25T19:49:20.285522+00:00",
+    "hash": "b1c15a47bcd93f2fa55e1fc227f059e00e7526a419789c450a64a105301d009f"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Release Reviewer",
+    "details": {
+      "attempt": 6,
+      "inputs": {
+        "documentation": "3ed78a7f7e9bf3f478b9353924d55a5efd9914e0d773c722a4cd3838b71a2138",
+        "implementation": "923b02283a3713a20eb3c2b7f001b1c14597d3d426a84033bc40945539b4329a",
+        "qa": "6632cc871db605ebfb031d3b835aafed2daf32e58de47e877d5f79ec11b91c87",
+        "security": "bd118b3c536b12caecbeb0d41093d47f1d438c880d1d179287520740d052c5f8"
+      },
+      "scenario": "9c1815b5327783e899837096798fe67101ef6f2f880c976a92670a5d87fe8af8",
+      "tool": "release_checklist"
+    },
+    "previous": "b1c15a47bcd93f2fa55e1fc227f059e00e7526a419789c450a64a105301d009f",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "readiness",
+    "timestamp": "2026-11-25T19:49:20.290497+00:00",
+    "hash": "82dd0091f9533b6af5360450eb84b2449e5e1ee8e5c11c9560ed4402f7f38da5"
+  },
+  {
+    "action": "passed",
+    "agent": "Release Reviewer",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "b5125f954d48f4473cf31c7d2ee91e9be8b203c62a1bbac28a9f53c7747b0885",
+      "tool": "release_checklist"
+    },
+    "previous": "82dd0091f9533b6af5360450eb84b2449e5e1ee8e5c11c9560ed4402f7f38da5",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "readiness",
+    "timestamp": "2026-11-25T19:49:20.292004+00:00",
+    "hash": "3cdad0b9ece687a77aaf1219f6aa863af16721092c519416c78d50da34f6cc5c"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "426ec6b2393cb17ccf8c6dd00f7c7d0a5d85669e8db66e1ba2c147edd90a36f6",
+      "inputs": {
+        "readiness": "b5125f954d48f4473cf31c7d2ee91e9be8b203c62a1bbac28a9f53c7747b0885"
+      }
+    },
+    "previous": "3cdad0b9ece687a77aaf1219f6aa863af16721092c519416c78d50da34f6cc5c",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T19:49:20.292004+00:00",
+    "hash": "ec51e3bfd0e2e9ff50b84c3466642f68b73cfbdc119daafe6f1eba6e9044b375"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): acknowledge release_approval in isolated replay only",
+      "subject": "426ec6b2393cb17ccf8c6dd00f7c7d0a5d85669e8db66e1ba2c147edd90a36f6"
+    },
+    "previous": "ec51e3bfd0e2e9ff50b84c3466642f68b73cfbdc119daafe6f1eba6e9044b375",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T19:49:20.591911+00:00",
+    "hash": "91a804d9335dc67c92314df3083b4cf1ced170b77d42b9354187211a2b933ce9"
+  },
+  {
+    "action": "released",
+    "agent": "Control Plane",
+    "details": {
+      "checkpoint": "1c38cc575001997ee647ac5e044d05e87f51bcf4a2b7b84045a7cdc46b1381e3",
+      "rollback": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "previous": "91a804d9335dc67c92314df3083b4cf1ced170b77d42b9354187211a2b933ce9",
+    "revision": 1,
+    "run": "greenfield",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T19:49:20.657059+00:00",
+    "hash": "d6f2daee604e598d70e489fbe1a7182226fb6b0793e73963307eede65598ae5d"
+  }
+]
