@@ -126,6 +126,7 @@ def intervene(store, run, action, reason, request=None, proposal=None, criteria=
                     spec.pop("local_model",None)
                     spec["proposal"] = proposal
                 store.log(s, "planner", "Architect", "invalidated", upstream=s["scenario"], dependent_artifacts=s["done"])
+                s.pop("clarification_draft", None)
                 s.update(state="pending", done={}, gate=None, digest=None, revision=s["revision"]+1,
                          scenario=store.put(spec), baseline=store.product(s["project"]))
             else:
@@ -203,6 +204,13 @@ def resume(store, run, workers=None):
                 require(n.tool in ctx["policy"]["agents"].get(n.owner, []) and n.tool in workers,
                         "Policy denied tool: " + n.tool)
                 value = workers[n.tool](ctx, {p:done[p] for p in n.inputs})
+                if n.id == "requirements":
+                    require(isinstance(value["questions"], list) and (value["questions"] or value["criteria"]),
+                            "Requirements need acceptance criteria or clarification questions")
+                if n.id == "documentation":
+                    for name in ("README.md", "OPENAPI.yaml", "CHANGELOG.md", "ADR.md"):
+                        require(isinstance(value.get(name), str) and value[name].strip(),
+                                "Missing or empty documentation output: " + name)
                 return True, value, time.monotonic()-start
             except Exception as err:
                 # Worker faults are gate failures, not successful fallbacks.
@@ -217,15 +225,17 @@ def resume(store, run, workers=None):
             s["state"] = "pending"
             for n,(ok,value,elapsed) in zip(batch,results):
                 artifact = store.put(value)
+                if ok and n.id == "requirements" and value["questions"]:
+                    s.update(state="needs_clarification",gate=n.id,clarification_draft=artifact)
+                    store.log(s,n.id,n.owner,"clarification_requested",questions=value["questions"],
+                              output=artifact,tool=n.tool,duration_seconds=round(elapsed,4))
+                    continue
                 store.log(s,n.id,n.owner,"passed" if ok else "failed", output=artifact, tool=n.tool,
                           duration_seconds=round(elapsed,4), **({} if ok else {"reason":value["reason"]}))
                 if ok:
                     s["done"][n.id] = artifact
                     if n.id == "design" and value.get("fallback"):
                         store.log(s,n.id,"Coder","fallback",reason=value["fallback"])
-                    if n.id == "requirements" and value["questions"]:
-                        s.update(state="needs_clarification",gate=n.id)
-                        store.log(s,n.id,n.owner,"clarification_requested",questions=value["questions"])
                 else:
                     s.update(state="safe_stop",failed_stage=n.id,error=value)
                     store.log(s,n.id,"Control Plane","safe_stop", checkpoint=s["baseline"], repairs=s["repairs"])
@@ -298,6 +308,8 @@ def main(argv=None):
                           json.loads(proposal_file.read_text(encoding="utf-8-sig")) if proposal_file else None,getattr(a,"criterion",None))
         elif a.action == "inspect":
             s = store.load(a.run)
+            if a.stage == "requirements" and s["state"] == "needs_clarification" and s.get("clarification_draft"):
+                return store.get(s["clarification_draft"])
             require(a.stage in s["done"], "No completed artifact for stage")
             return store.get(s["done"][a.stage])
         elif a.action == "export":
