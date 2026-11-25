@@ -119,7 +119,7 @@ python -B engineering\replay_observability.py --authorize-demo --evidence .canop
 
 The replay first publishes greenfield into a temporary workspace. It then applies the [hash-pinned proposal](scenarios/observability-api-docs/proposal) to that exact baseline, runs QA and security on the changed candidate, and exports the results. Approvals are simulated; no server or modified checkout is left running. The tests fetch the Swagger UI, its local assets and the existing OpenAPI contract over HTTP, and inspect structured completion logs on success and exception paths. To try the UI in a **retained supervised checkout**, run the [scenario](scenarios/observability-api-docs/scenario.json) after greenfield in the same workspace, approve its gates, then set `$env:DOCS_ENABLED='true'` before starting the changed service. Open `/docs/index.html`; the contract is at `/docs/openapi.yaml`. Both routes are disabled by default.
 
-### Quick review: a second workload on the same engine
+### Another Example to demonstrate with
 
 The [inventory requirement](scenarios/inventory/scenario.json) was committed at `91d16c2`, after the engine baseline `e85f99a` and before any inventory implementation. This simulation uses a new [project manifest](projects/inventory.json), Java/Maven workload and replay driver. It does not change the scheduler, workers or policy. The candidate defect and repair are scripted; the Maven builds, HTTP requests, gate decisions and checkout restoration actually execute. Approvals below are **simulated**, not independent human sign-off.
 
