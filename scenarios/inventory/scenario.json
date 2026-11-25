@@ -1,0 +1,15 @@
+{
+  "project": "inventory",
+  "kind": "greenfield",
+  "request": "Create a single-process inventory reservation API with 10 units of stock. Allow clients to inspect the available quantity and reserve units without overselling.",
+  "criteria": [
+    "GET /stock returns 200 with the available quantity. POST /reservations?units=3 returns 201 and leaves 7 of the initial 10 units.",
+    "Reject reservations larger than available stock with 409 and leave the available quantity unchanged.",
+    "Reject zero or negative reservations with 400 without changing the available quantity."
+  ],
+  "acceptance_tests": {
+    "AC-001": ["InventoryTest.reservesAvailableStock"],
+    "AC-002": ["InventoryTest.rejectionPreservesStock"],
+    "AC-003": ["InventoryTest.nonpositiveQuantityIsRejected"]
+  }
+}
