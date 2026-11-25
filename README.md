@@ -120,11 +120,11 @@ The diagrams are intentionally split at artifact boundaries. Read each top to bo
 ```mermaid
 %%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":55,"rankSpacing":48,"padding":18}}}%%
 flowchart TD
-    A["Requirements analyst"]
+    A["Requirements<br/>analyst"]
 
-    B{"Requirements approved?"}
+    B{"Requirements<br/>approved?"}
 
-    C["Architect: plan and impact"]
+    C["Architect:<br/>plan and impact"]
 
     D{"Plan approved?"}
 
@@ -138,12 +138,12 @@ flowchart TD
 ```mermaid
 %%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":65,"rankSpacing":48,"padding":18}}}%%
 flowchart TD
-    A["Coder: frozen candidate"]
+    A["Coder:<br/>frozen candidate"]
 
-    B{"Execution authorized?"}
+    B{"Execution<br/>authorized?"}
 
-    Q["QA: test, lint, coverage"]
-    S["Security: static scan"]
+    Q["QA: test, lint,<br/>coverage"]
+    S["Security:<br/>static scan"]
 
     J{"Both passed?"}
 
@@ -159,13 +159,13 @@ flowchart TD
 ```mermaid
 %%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":55,"rankSpacing":48,"padding":18}}}%%
 flowchart TD
-    D["Writer: evidence-linked docs"]
+    D["Writer:<br/>evidence-linked docs"]
 
     R["Release readiness"]
 
     H{"Human sign-off?"}
 
-    P["Publish local snapshot"]
+    P["Publish<br/>local snapshot"]
 
     D --> R
     R --> H
@@ -218,15 +218,15 @@ Each workspace has `.canopy/control.sqlite`. The store keeps versioned run state
 ```mermaid
 %%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":60,"rankSpacing":48,"padding":18}}}%%
 flowchart TD
-    F["Failed gate or policy denial"]
+    F["Failed gate<br/>or policy denial"]
 
-    S["Safe stop: retain checkpoint"]
+    S["Safe stop:<br/>retain checkpoint"]
 
-    H{"Human authorizes repair?"}
+    H{"Human authorizes<br/>repair?"}
 
-    A["Revise scope or candidate"]
+    A["Revise scope<br/>or candidate"]
 
-    P["Return to planning and gates"]
+    P["Return to planning<br/>and gates"]
 
     F --> S
     S --> H
