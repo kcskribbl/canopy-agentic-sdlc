@@ -118,7 +118,7 @@ The diagrams are intentionally split at artifact boundaries. Read each top to bo
 **1. Understand and authorize**
 
 ```mermaid
-%%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":55,"rankSpacing":48,"padding":18}}}%%
+%%{init: {"themeVariables":{"fontSize":"10px"},"htmlLabels":false,"flowchart":{"nodeSpacing":16,"rankSpacing":20,"padding":10}}}%%
 flowchart TD
     A["Requirements<br/>analyst"]
 
@@ -136,7 +136,7 @@ flowchart TD
 **2. Build and verify the same candidate**
 
 ```mermaid
-%%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":65,"rankSpacing":48,"padding":18}}}%%
+%%{init: {"themeVariables":{"fontSize":"10px"},"htmlLabels":false,"flowchart":{"nodeSpacing":16,"rankSpacing":20,"padding":10}}}%%
 flowchart TD
     A["Coder:<br/>frozen candidate"]
 
@@ -157,7 +157,7 @@ flowchart TD
 **3. Sign off or recover**
 
 ```mermaid
-%%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":55,"rankSpacing":48,"padding":18}}}%%
+%%{init: {"themeVariables":{"fontSize":"10px"},"htmlLabels":false,"flowchart":{"nodeSpacing":16,"rankSpacing":20,"padding":10}}}%%
 flowchart TD
     D["Writer:<br/>evidence-linked docs"]
 
@@ -216,7 +216,7 @@ Each workspace has `.canopy/control.sqlite`. The store keeps versioned run state
 **Recovery loop (not a shortcut around review):**
 
 ```mermaid
-%%{init: {"themeVariables":{"fontSize":"20px"},"flowchart":{"nodeSpacing":60,"rankSpacing":48,"padding":18}}}%%
+%%{init: {"themeVariables":{"fontSize":"10px"},"htmlLabels":false,"flowchart":{"nodeSpacing":16,"rankSpacing":20,"padding":10}}}%%
 flowchart TD
     F["Failed gate<br/>or policy denial"]
 
