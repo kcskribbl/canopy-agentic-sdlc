@@ -119,6 +119,25 @@ python -B engineering\replay_observability.py --authorize-demo --evidence .canop
 
 The replay first publishes greenfield into a temporary workspace. It then applies the [hash-pinned proposal](scenarios/observability-api-docs/proposal) to that exact baseline, runs QA and security on the changed candidate, and exports the results. Approvals are simulated; no server or modified checkout is left running. The tests fetch the Swagger UI, its local assets and the existing OpenAPI contract over HTTP, and inspect structured completion logs on success and exception paths. To try the UI in a **retained supervised checkout**, run the [scenario](scenarios/observability-api-docs/scenario.json) after greenfield in the same workspace, approve its gates, then set `$env:DOCS_ENABLED='true'` before starting the changed service. Open `/docs/index.html`; the contract is at `/docs/openapi.yaml`. Both routes are disabled by default.
 
+### Quick review: a second workload on the same engine
+
+The [inventory requirement](scenarios/inventory/scenario.json) was committed at `91d16c2`, after the engine baseline `e85f99a` and before any inventory implementation. This simulation uses a new [project manifest](projects/inventory.json), Java/Maven workload and replay driver. It does not change the scheduler, workers or policy. The candidate defect and repair are scripted; the Maven builds, HTTP requests, gate decisions and checkout restoration actually execute. Approvals below are **simulated**, not independent human sign-off.
+
+```text
+Inventory reservation API | 2026-11-25 UTC | condensed from the run trace
+20:15:33  r1  START      Empty managed checkout; 10 units of stock required at startup.
+20:15:35  r1  EXECUTE    Requirements, plan and execution approved (simulation); QA and security dispatched.
+20:15:48  r1  QA FAIL    2 of 4 tests failed. Reserve 11 from 10: HTTP 409, but stock was -1; expected 10.
+20:15:48  r1  SAFE-STOP  Security passed. The failed QA gate still blocked the join; no checkout published.
+20:15:49  r2  RE-PLAN    Repair authorized (simulation): check stock before decrement. Prior results invalidated.
+20:15:52  r2  EXECUTE    Requirements, revised plan and repaired candidate approved again (simulation).
+20:16:10  r2  VERIFY     4/4 tests passed, including live HTTP; 11/11 lines covered; lint and security passed.
+20:16:10  r2  RELEASE    Readiness passed; simulated sign-off published local snapshot 38dc66eb70e2.
+20:16:10  r2  ROLLBACK   Restored empty baseline 44136fa355b3; replay verified no managed files remained.
+```
+
+[Full event trace](scenarios/inventory/evidence/AGENT_TRACE.md) · [Measured metrics](scenarios/inventory/evidence/METRICS.md): **37.29 s** elapsed, **21.24 s** from QA failure to recovery, one repair and one rollback. To reproduce, run `python -B engineering\replay_inventory.py --authorize-demo --evidence .canopy\inventory-evidence` from the repository root with a new output directory. The inventory is in-memory and resets on restart; nothing is deployed.
+
 ## Execution graph
 
 The diagrams are intentionally split at artifact boundaries. Read each top to bottom. The table is authoritative even in Markdown viewers without Mermaid support.

@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info: {title: Inventory reservations, version: 1.0.0}
+paths:
+  /stock:
+    get:
+      responses:
+        '200': {$ref: '#/components/responses/Stock'}
+  /reservations:
+    post:
+      parameters:
+        - in: query
+          name: units
+          required: true
+          schema: {type: integer, minimum: 1}
+      responses:
+        '201': {$ref: '#/components/responses/Stock'}
+        '400': {description: Missing or invalid quantity}
+        '409': {description: Insufficient stock; inventory is unchanged}
+components:
+  responses:
+    Stock:
+      description: Current available quantity
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [available]
+            properties:
+              available: {type: integer, minimum: 0}

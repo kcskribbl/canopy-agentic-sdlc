@@ -1,0 +1,73 @@
+{
+  "released_at_least_once": true,
+  "attempts": {
+    "created": 1,
+    "tool_requested": 12,
+    "passed": 11,
+    "approval_requested": 7,
+    "approved": 7,
+    "failed": 1,
+    "safe_stop": 1,
+    "repair_authorized": 1,
+    "invalidated": 1,
+    "revise": 1,
+    "released": 1,
+    "rollback": 1
+  },
+  "stage_success_rates": {
+    "requirements": 1.0,
+    "design": 1.0,
+    "implementation": 1.0,
+    "qa": 0.5,
+    "security": 1.0,
+    "documentation": 1.0,
+    "readiness": 1.0
+  },
+  "stage_latency_seconds": {
+    "requirements": {
+      "total": 0.0,
+      "mean": 0.0,
+      "attempts": 2
+    },
+    "design": {
+      "total": 0.032,
+      "mean": 0.016,
+      "attempts": 2
+    },
+    "implementation": {
+      "total": 0.0,
+      "mean": 0.0,
+      "attempts": 2
+    },
+    "qa": {
+      "total": 31.125,
+      "mean": 15.5625,
+      "attempts": 2
+    },
+    "security": {
+      "total": 25.296999999999997,
+      "mean": 12.648499999999999,
+      "attempts": 2
+    },
+    "documentation": {
+      "total": 0.0,
+      "mean": 0.0,
+      "attempts": 1
+    },
+    "readiness": {
+      "total": 0.0,
+      "mean": 0.0,
+      "attempts": 1
+    }
+  },
+  "elapsed_seconds": 37.287177,
+  "retries": 1,
+  "rollbacks": 1,
+  "replans": 1,
+  "human_interventions": 9,
+  "mttr_seconds": 21.236754,
+  "recovery_durations_seconds": [
+    21.236754
+  ],
+  "unrecovered_gates": []
+}

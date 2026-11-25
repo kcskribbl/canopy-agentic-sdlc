@@ -1,6 +1,8 @@
 .canopy/
 scenarios/.replay-*/
 **/.replay-*/
+# Raw Maven failure diagnostics in this export include host-specific absolute paths.
+/scenarios/inventory/evidence/artifacts.json
 .live-*/
 docs/product/canopy-product-r2/
 **/target/

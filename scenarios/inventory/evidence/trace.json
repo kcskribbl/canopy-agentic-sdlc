@@ -1,0 +1,751 @@
+[
+  {
+    "action": "created",
+    "agent": "Control Plane",
+    "details": {
+      "baseline": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "input": "3e8c24e701362ec444ae2e2d93f0c3e1dfcc182c986d164140f62b888655c9a1",
+      "policy": "f3f5defc3266c21459ccadfcaa9d06505969d5d53e31c947a7a73a3602974c47"
+    },
+    "previous": null,
+    "revision": 1,
+    "run": "inventory",
+    "stage": "intake",
+    "timestamp": "2026-11-25T20:15:33.624340+00:00",
+    "hash": "a1fdc509ada47a699b4f46cc1684771496a23d6c0e82f2493a9f3c84cd1d7823"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Requirements Analyst",
+    "details": {
+      "attempt": 1,
+      "inputs": {},
+      "scenario": "3e8c24e701362ec444ae2e2d93f0c3e1dfcc182c986d164140f62b888655c9a1",
+      "tool": "normalize"
+    },
+    "previous": "a1fdc509ada47a699b4f46cc1684771496a23d6c0e82f2493a9f3c84cd1d7823",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T20:15:33.625840+00:00",
+    "hash": "ec2b2c105da25ff3d4c94f3c0400f7d24d651c0dfdb3e568856709a5fd497d9b"
+  },
+  {
+    "action": "passed",
+    "agent": "Requirements Analyst",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180",
+      "tool": "normalize"
+    },
+    "previous": "ec2b2c105da25ff3d4c94f3c0400f7d24d651c0dfdb3e568856709a5fd497d9b",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T20:15:33.626844+00:00",
+    "hash": "bba6f6fa1b64df75c5be459b186d7137e439b96fafeb428bfaa6a779805b6043"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "f74c5b39a64845801b489e99b76e4a64e710f5373acc26807a99348a0c9e266f",
+      "inputs": {
+        "requirements": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180"
+      }
+    },
+    "previous": "bba6f6fa1b64df75c5be459b186d7137e439b96fafeb428bfaa6a779805b6043",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T20:15:33.627964+00:00",
+    "hash": "e5e542912cc85bf4d4b97f7347fdeef09935220189f64ace2ec25cd61a062613"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): review requirements_approval",
+      "subject": "f74c5b39a64845801b489e99b76e4a64e710f5373acc26807a99348a0c9e266f"
+    },
+    "previous": "e5e542912cc85bf4d4b97f7347fdeef09935220189f64ace2ec25cd61a062613",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T20:15:33.892104+00:00",
+    "hash": "558ff15fccb751c2787a30f3014604613bbd14c0767c0e02f6a0ec46ef4ded72"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Architect",
+    "details": {
+      "attempt": 2,
+      "inputs": {
+        "requirements": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180",
+        "requirements_approval": "4de5b5256d470ec6aa6bacbc80253704101f37260c8e133e8cd87f78a214bd15"
+      },
+      "scenario": "3e8c24e701362ec444ae2e2d93f0c3e1dfcc182c986d164140f62b888655c9a1",
+      "tool": "inspect_project"
+    },
+    "previous": "558ff15fccb751c2787a30f3014604613bbd14c0767c0e02f6a0ec46ef4ded72",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "design",
+    "timestamp": "2026-11-25T20:15:34.172778+00:00",
+    "hash": "245c77decba7938c258076f268a7edf785189715fcf5814faa0a4553234c8842"
+  },
+  {
+    "action": "passed",
+    "agent": "Architect",
+    "details": {
+      "duration_seconds": 0.016,
+      "output": "581adf94b12b9f9c8c5c338f8b5e7d6fcd9f120a3bd396308fc3f79f0b05894e",
+      "tool": "inspect_project"
+    },
+    "previous": "245c77decba7938c258076f268a7edf785189715fcf5814faa0a4553234c8842",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "design",
+    "timestamp": "2026-11-25T20:15:34.189305+00:00",
+    "hash": "7c87b6875ef110c41a3abeefee1923c9191401169195142d4e641aebc9913afd"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "3df24a1208007a664172c8c2878fcd769d097c0cfcf2f2c823057df7fdcd0105",
+      "inputs": {
+        "design": "581adf94b12b9f9c8c5c338f8b5e7d6fcd9f120a3bd396308fc3f79f0b05894e"
+      }
+    },
+    "previous": "7c87b6875ef110c41a3abeefee1923c9191401169195142d4e641aebc9913afd",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T20:15:34.190306+00:00",
+    "hash": "32056648e171bf96f9e814698de6f7be658e81620a2dd270a80e1dd0f13e2a83"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): review plan_approval",
+      "subject": "3df24a1208007a664172c8c2878fcd769d097c0cfcf2f2c823057df7fdcd0105"
+    },
+    "previous": "32056648e171bf96f9e814698de6f7be658e81620a2dd270a80e1dd0f13e2a83",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T20:15:34.489493+00:00",
+    "hash": "3e19e1af6d19483dc92f107462e536eb1c454fc8163556303c4096cc4308a4fe"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Coder",
+    "details": {
+      "attempt": 3,
+      "inputs": {
+        "design": "581adf94b12b9f9c8c5c338f8b5e7d6fcd9f120a3bd396308fc3f79f0b05894e",
+        "plan_approval": "455a05f8f45297431ed01701caaee7c166d4bb5c18835e0b3e25d384d669266a"
+      },
+      "scenario": "3e8c24e701362ec444ae2e2d93f0c3e1dfcc182c986d164140f62b888655c9a1",
+      "tool": "compose_candidate"
+    },
+    "previous": "3e19e1af6d19483dc92f107462e536eb1c454fc8163556303c4096cc4308a4fe",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T20:15:34.765790+00:00",
+    "hash": "139d3acefecdaacd5713a5e03cd09aa9284e49b8259fec8c664590720db5776a"
+  },
+  {
+    "action": "passed",
+    "agent": "Coder",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "bd579eb937e7f4b7aeeef620ec165f7604a1cee579dd4f2887a5b01a331c9b64",
+      "tool": "compose_candidate"
+    },
+    "previous": "139d3acefecdaacd5713a5e03cd09aa9284e49b8259fec8c664590720db5776a",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T20:15:34.768796+00:00",
+    "hash": "c9a4dbcb6b147e450d36be2dc3f6cad7d23bbce7d2512be28a9bf76c9bff1b5d"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "7e51294bf8cfa243247b1193b1b0c43b04fae586efc7d3dae7eda1f57e2aac70",
+      "inputs": {
+        "implementation": "bd579eb937e7f4b7aeeef620ec165f7604a1cee579dd4f2887a5b01a331c9b64"
+      }
+    },
+    "previous": "c9a4dbcb6b147e450d36be2dc3f6cad7d23bbce7d2512be28a9bf76c9bff1b5d",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T20:15:34.768796+00:00",
+    "hash": "9c1297260952e22ae17ebf43b247015c8a8c2365707581f4b9a3b355f711c514"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): review execution_approval",
+      "subject": "7e51294bf8cfa243247b1193b1b0c43b04fae586efc7d3dae7eda1f57e2aac70"
+    },
+    "previous": "9c1297260952e22ae17ebf43b247015c8a8c2365707581f4b9a3b355f711c514",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T20:15:35.060552+00:00",
+    "hash": "881eeaba94f59a266e68bf20104fa488455e67a7b8c5cb5008b38a1f8f99988b"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "QA",
+    "details": {
+      "attempt": 4,
+      "inputs": {
+        "execution_approval": "b56db486642030a2f1036492542c7cb375347ef66f13cb5a9f64b852ea059392",
+        "implementation": "bd579eb937e7f4b7aeeef620ec165f7604a1cee579dd4f2887a5b01a331c9b64"
+      },
+      "scenario": "3e8c24e701362ec444ae2e2d93f0c3e1dfcc182c986d164140f62b888655c9a1",
+      "tool": "maven_verify"
+    },
+    "previous": "881eeaba94f59a266e68bf20104fa488455e67a7b8c5cb5008b38a1f8f99988b",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "qa",
+    "timestamp": "2026-11-25T20:15:35.367098+00:00",
+    "hash": "ce649cb5ebc42328a1702b25283b4bfef10e996478c67a2afdcc4da97fe92a6e"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Security and Compliance",
+    "details": {
+      "attempt": 4,
+      "inputs": {
+        "execution_approval": "b56db486642030a2f1036492542c7cb375347ef66f13cb5a9f64b852ea059392",
+        "implementation": "bd579eb937e7f4b7aeeef620ec165f7604a1cee579dd4f2887a5b01a331c9b64"
+      },
+      "scenario": "3e8c24e701362ec444ae2e2d93f0c3e1dfcc182c986d164140f62b888655c9a1",
+      "tool": "security_scan"
+    },
+    "previous": "ce649cb5ebc42328a1702b25283b4bfef10e996478c67a2afdcc4da97fe92a6e",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "security",
+    "timestamp": "2026-11-25T20:15:35.367098+00:00",
+    "hash": "82a2224bee67daa28e9387d8d9f1a4fb87c0d420728a58927f4cb0af4392ae7e"
+  },
+  {
+    "action": "failed",
+    "agent": "QA",
+    "details": {
+      "duration_seconds": 13.485,
+      "output": "54f37550b93223074cad6892444ecdfc3f5ed6ea17676688c2d6bf34575e6324",
+      "reason": "Maven gate failed",
+      "tool": "maven_verify"
+    },
+    "previous": "82a2224bee67daa28e9387d8d9f1a4fb87c0d420728a58927f4cb0af4392ae7e",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "qa",
+    "timestamp": "2026-11-25T20:15:48.851835+00:00",
+    "hash": "4ef387f1886b2aef3e434573d5820360414cdc64c9eee15b6e10a225c20b9c6e"
+  },
+  {
+    "action": "safe_stop",
+    "agent": "Control Plane",
+    "details": {
+      "checkpoint": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "repairs": 0
+    },
+    "previous": "4ef387f1886b2aef3e434573d5820360414cdc64c9eee15b6e10a225c20b9c6e",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "qa",
+    "timestamp": "2026-11-25T20:15:48.851835+00:00",
+    "hash": "76b8b05e422097207b27f6345f2c398a4c5d19e7d437983799dba03ced7a4d21"
+  },
+  {
+    "action": "passed",
+    "agent": "Security and Compliance",
+    "details": {
+      "duration_seconds": 11.844,
+      "output": "286483119be3b576ac6a148e92a1b5d2bd6dacbe9f175eb4ab13e039d0fe8dbd",
+      "tool": "security_scan"
+    },
+    "previous": "76b8b05e422097207b27f6345f2c398a4c5d19e7d437983799dba03ced7a4d21",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "security",
+    "timestamp": "2026-11-25T20:15:48.851835+00:00",
+    "hash": "2651e655988075b8c5a4433d3d63ac9b9f8b19844de3ba869323d75f47016d5e"
+  },
+  {
+    "action": "repair_authorized",
+    "agent": "Control Plane",
+    "details": {
+      "attempt": 1,
+      "checkpoint": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "previous": "2651e655988075b8c5a4433d3d63ac9b9f8b19844de3ba869323d75f47016d5e",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "recovery",
+    "timestamp": "2026-11-25T20:15:49.370048+00:00",
+    "hash": "aa168c3ac36f1b35972a3163807d0d1548f9e5a8cd21d1b38ba381ae01567c10"
+  },
+  {
+    "action": "invalidated",
+    "agent": "Architect",
+    "details": {
+      "dependent_artifacts": {
+        "design": "581adf94b12b9f9c8c5c338f8b5e7d6fcd9f120a3bd396308fc3f79f0b05894e",
+        "execution_approval": "b56db486642030a2f1036492542c7cb375347ef66f13cb5a9f64b852ea059392",
+        "implementation": "bd579eb937e7f4b7aeeef620ec165f7604a1cee579dd4f2887a5b01a331c9b64",
+        "plan_approval": "455a05f8f45297431ed01701caaee7c166d4bb5c18835e0b3e25d384d669266a",
+        "requirements": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180",
+        "requirements_approval": "4de5b5256d470ec6aa6bacbc80253704101f37260c8e133e8cd87f78a214bd15",
+        "security": "286483119be3b576ac6a148e92a1b5d2bd6dacbe9f175eb4ab13e039d0fe8dbd"
+      },
+      "upstream": "3e8c24e701362ec444ae2e2d93f0c3e1dfcc182c986d164140f62b888655c9a1"
+    },
+    "previous": "aa168c3ac36f1b35972a3163807d0d1548f9e5a8cd21d1b38ba381ae01567c10",
+    "revision": 1,
+    "run": "inventory",
+    "stage": "planner",
+    "timestamp": "2026-11-25T20:15:49.371047+00:00",
+    "hash": "544e84feab46689efd885365606b33ea6c72421fd2f411277113fac013684ad7"
+  },
+  {
+    "action": "revise",
+    "agent": "Human",
+    "details": {
+      "checkpoint": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "previous_state": "safe_stop",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): check available stock before decrement"
+    },
+    "previous": "544e84feab46689efd885365606b33ea6c72421fd2f411277113fac013684ad7",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "control",
+    "timestamp": "2026-11-25T20:15:49.371047+00:00",
+    "hash": "d5e7cd3b7a29f693c8da0df96562129b6a8572bf8f3725f9ad0a7f7cb4a85fb9"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Requirements Analyst",
+    "details": {
+      "attempt": 5,
+      "inputs": {},
+      "scenario": "97855d58ccbdf576be8b0d8c6501742e89d5e9f9e34ff92744422f2a865eaf1f",
+      "tool": "normalize"
+    },
+    "previous": "d5e7cd3b7a29f693c8da0df96562129b6a8572bf8f3725f9ad0a7f7cb4a85fb9",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T20:15:49.764918+00:00",
+    "hash": "bb51735b06b4bc9b610c6eb28cd91dbf15bb85799ba7c24a985a82827b7c08a8"
+  },
+  {
+    "action": "passed",
+    "agent": "Requirements Analyst",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180",
+      "tool": "normalize"
+    },
+    "previous": "bb51735b06b4bc9b610c6eb28cd91dbf15bb85799ba7c24a985a82827b7c08a8",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "requirements",
+    "timestamp": "2026-11-25T20:15:49.769219+00:00",
+    "hash": "bddaafdf7954bf440d5bfbd91dc42c6a11ec5073a148a2e7020cdb98df292290"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "54a2a3df3af29eeefc0b6b1c1e175ba6329c7fffb0a643bf0c5e5fbf6b0e3118",
+      "inputs": {
+        "requirements": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180"
+      }
+    },
+    "previous": "bddaafdf7954bf440d5bfbd91dc42c6a11ec5073a148a2e7020cdb98df292290",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T20:15:49.769219+00:00",
+    "hash": "d83b673d90010a5787a75a1677c9519ea70d5ddf4db4772d88be8453ec439f73"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): review requirements_approval",
+      "subject": "54a2a3df3af29eeefc0b6b1c1e175ba6329c7fffb0a643bf0c5e5fbf6b0e3118"
+    },
+    "previous": "d83b673d90010a5787a75a1677c9519ea70d5ddf4db4772d88be8453ec439f73",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "requirements_approval",
+    "timestamp": "2026-11-25T20:15:50.163945+00:00",
+    "hash": "ed27a4ab33b9e27cf3a191ce75c7fd9b2b796858416bae844d32f2f240b6e22c"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Architect",
+    "details": {
+      "attempt": 6,
+      "inputs": {
+        "requirements": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180",
+        "requirements_approval": "4533ac09605d52055e2acb0481dd19c070dca539571fca91152f0cf6be0eface"
+      },
+      "scenario": "97855d58ccbdf576be8b0d8c6501742e89d5e9f9e34ff92744422f2a865eaf1f",
+      "tool": "inspect_project"
+    },
+    "previous": "ed27a4ab33b9e27cf3a191ce75c7fd9b2b796858416bae844d32f2f240b6e22c",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "design",
+    "timestamp": "2026-11-25T20:15:50.580028+00:00",
+    "hash": "98505390003ea83fa7fe73228203f92271b7863c3fcc6d326bffd9708ceac83d"
+  },
+  {
+    "action": "passed",
+    "agent": "Architect",
+    "details": {
+      "duration_seconds": 0.016,
+      "output": "09650cf78e69b4073802acd03303a25a96a712ed39a5151f389d0345221add92",
+      "tool": "inspect_project"
+    },
+    "previous": "98505390003ea83fa7fe73228203f92271b7863c3fcc6d326bffd9708ceac83d",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "design",
+    "timestamp": "2026-11-25T20:15:50.606636+00:00",
+    "hash": "842f17bea941217f9596f96c8fba3221351151830a71fe69e88c67c28e6aa0d8"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "21e28a3fa42fe868595fd9f5135a91f567130106c3aefa81f3398798dd84f5f8",
+      "inputs": {
+        "design": "09650cf78e69b4073802acd03303a25a96a712ed39a5151f389d0345221add92"
+      }
+    },
+    "previous": "842f17bea941217f9596f96c8fba3221351151830a71fe69e88c67c28e6aa0d8",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T20:15:50.607636+00:00",
+    "hash": "dbcd436676bbca367ac8c973730051c261bfb550ce455644aba2173379cec79d"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): review plan_approval",
+      "subject": "21e28a3fa42fe868595fd9f5135a91f567130106c3aefa81f3398798dd84f5f8"
+    },
+    "previous": "dbcd436676bbca367ac8c973730051c261bfb550ce455644aba2173379cec79d",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "plan_approval",
+    "timestamp": "2026-11-25T20:15:51.122237+00:00",
+    "hash": "f7864d8173658424eb7fd80117d2e422d9810e2082b42aa5bf2bc0c8fdc450e0"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Coder",
+    "details": {
+      "attempt": 7,
+      "inputs": {
+        "design": "09650cf78e69b4073802acd03303a25a96a712ed39a5151f389d0345221add92",
+        "plan_approval": "fe0804589ea47ee815644317034381837974653266e09c55ddeb8496071fe974"
+      },
+      "scenario": "97855d58ccbdf576be8b0d8c6501742e89d5e9f9e34ff92744422f2a865eaf1f",
+      "tool": "compose_candidate"
+    },
+    "previous": "f7864d8173658424eb7fd80117d2e422d9810e2082b42aa5bf2bc0c8fdc450e0",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T20:15:51.567952+00:00",
+    "hash": "613e0d82817048b25c57ea6bb672677487286b80656bdb30171575e8b10bde79"
+  },
+  {
+    "action": "passed",
+    "agent": "Coder",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "90a0f6bf4089c58e6eadb86d2dba07b88639b378c0cf88413706a0139837dc24",
+      "tool": "compose_candidate"
+    },
+    "previous": "613e0d82817048b25c57ea6bb672677487286b80656bdb30171575e8b10bde79",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "implementation",
+    "timestamp": "2026-11-25T20:15:51.569952+00:00",
+    "hash": "3e83f7d42fe627bb86c59d10dfa0ee24f197a4e289be72afc1ac3a55896bbfb1"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "1e626a73c0de47d6adbed29fe40f174ede982e1e80a206d83e598cfa6aec6756",
+      "inputs": {
+        "implementation": "90a0f6bf4089c58e6eadb86d2dba07b88639b378c0cf88413706a0139837dc24"
+      }
+    },
+    "previous": "3e83f7d42fe627bb86c59d10dfa0ee24f197a4e289be72afc1ac3a55896bbfb1",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T20:15:51.570954+00:00",
+    "hash": "525541b7f29fb179e62ae83adebead26d4d36007da888ef51320c3d928249066"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): review execution_approval",
+      "subject": "1e626a73c0de47d6adbed29fe40f174ede982e1e80a206d83e598cfa6aec6756"
+    },
+    "previous": "525541b7f29fb179e62ae83adebead26d4d36007da888ef51320c3d928249066",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "execution_approval",
+    "timestamp": "2026-11-25T20:15:52.044148+00:00",
+    "hash": "664506965270041b22fe8ed5ab61676b19776b8d69a93dbda34f806c9976071f"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "QA",
+    "details": {
+      "attempt": 8,
+      "inputs": {
+        "execution_approval": "bbe22691a262fbb5e8e09885abe5639432d0618d66411bb6851d1f2cd72b5f42",
+        "implementation": "90a0f6bf4089c58e6eadb86d2dba07b88639b378c0cf88413706a0139837dc24"
+      },
+      "scenario": "97855d58ccbdf576be8b0d8c6501742e89d5e9f9e34ff92744422f2a865eaf1f",
+      "tool": "maven_verify"
+    },
+    "previous": "664506965270041b22fe8ed5ab61676b19776b8d69a93dbda34f806c9976071f",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "qa",
+    "timestamp": "2026-11-25T20:15:52.440730+00:00",
+    "hash": "0dc6442e8272438fb42ea7c194b2649ac1521a519ae70ae60ef8a454a92296e0"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Security and Compliance",
+    "details": {
+      "attempt": 8,
+      "inputs": {
+        "execution_approval": "bbe22691a262fbb5e8e09885abe5639432d0618d66411bb6851d1f2cd72b5f42",
+        "implementation": "90a0f6bf4089c58e6eadb86d2dba07b88639b378c0cf88413706a0139837dc24"
+      },
+      "scenario": "97855d58ccbdf576be8b0d8c6501742e89d5e9f9e34ff92744422f2a865eaf1f",
+      "tool": "security_scan"
+    },
+    "previous": "0dc6442e8272438fb42ea7c194b2649ac1521a519ae70ae60ef8a454a92296e0",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "security",
+    "timestamp": "2026-11-25T20:15:52.441730+00:00",
+    "hash": "d4a5474e222dcc97bbd73439a417acb4c83cbacf21f363393cf314c5cc3db6b9"
+  },
+  {
+    "action": "passed",
+    "agent": "QA",
+    "details": {
+      "duration_seconds": 17.64,
+      "output": "fdbbf94f920cdd2fefcc3571439717033c4c620f0b96ab15f8cf2657bdb66ee1",
+      "tool": "maven_verify"
+    },
+    "previous": "d4a5474e222dcc97bbd73439a417acb4c83cbacf21f363393cf314c5cc3db6b9",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "qa",
+    "timestamp": "2026-11-25T20:16:10.088589+00:00",
+    "hash": "015a6ef08cb99423c3cb8944c3e7d3a5c75e59d7eff334eed0acd95cb0298c48"
+  },
+  {
+    "action": "passed",
+    "agent": "Security and Compliance",
+    "details": {
+      "duration_seconds": 13.453,
+      "output": "79ddf4bdf29314ae6be2f506a5cdb7eceb4b34722dd5aff106b285bf73b894d7",
+      "tool": "security_scan"
+    },
+    "previous": "015a6ef08cb99423c3cb8944c3e7d3a5c75e59d7eff334eed0acd95cb0298c48",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "security",
+    "timestamp": "2026-11-25T20:16:10.088589+00:00",
+    "hash": "c7499a0f9e187203368b6b9a852c281ab72d1b80c68b2d4ad27b959fb9b880e5"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Technical Writer",
+    "details": {
+      "attempt": 9,
+      "inputs": {
+        "design": "09650cf78e69b4073802acd03303a25a96a712ed39a5151f389d0345221add92",
+        "implementation": "90a0f6bf4089c58e6eadb86d2dba07b88639b378c0cf88413706a0139837dc24",
+        "qa": "fdbbf94f920cdd2fefcc3571439717033c4c620f0b96ab15f8cf2657bdb66ee1",
+        "requirements": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180",
+        "security": "79ddf4bdf29314ae6be2f506a5cdb7eceb4b34722dd5aff106b285bf73b894d7"
+      },
+      "scenario": "97855d58ccbdf576be8b0d8c6501742e89d5e9f9e34ff92744422f2a865eaf1f",
+      "tool": "render_docs"
+    },
+    "previous": "c7499a0f9e187203368b6b9a852c281ab72d1b80c68b2d4ad27b959fb9b880e5",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "documentation",
+    "timestamp": "2026-11-25T20:16:10.090589+00:00",
+    "hash": "e9c83d27162f3217c7914271aa2df116d5b618317d2a9c2c7399a0e27f5a6ddb"
+  },
+  {
+    "action": "passed",
+    "agent": "Technical Writer",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "a2a296f9adeb695f06a46eb4f9c27a40c7d8cc4c74fa3950649531bbec35239c",
+      "tool": "render_docs"
+    },
+    "previous": "e9c83d27162f3217c7914271aa2df116d5b618317d2a9c2c7399a0e27f5a6ddb",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "documentation",
+    "timestamp": "2026-11-25T20:16:10.090589+00:00",
+    "hash": "9c169c35502b282ea25fe79da039f80cb96163485ff9895f8cfff7530b801db6"
+  },
+  {
+    "action": "tool_requested",
+    "agent": "Release Reviewer",
+    "details": {
+      "attempt": 10,
+      "inputs": {
+        "documentation": "a2a296f9adeb695f06a46eb4f9c27a40c7d8cc4c74fa3950649531bbec35239c",
+        "implementation": "90a0f6bf4089c58e6eadb86d2dba07b88639b378c0cf88413706a0139837dc24",
+        "qa": "fdbbf94f920cdd2fefcc3571439717033c4c620f0b96ab15f8cf2657bdb66ee1",
+        "security": "79ddf4bdf29314ae6be2f506a5cdb7eceb4b34722dd5aff106b285bf73b894d7"
+      },
+      "scenario": "97855d58ccbdf576be8b0d8c6501742e89d5e9f9e34ff92744422f2a865eaf1f",
+      "tool": "release_checklist"
+    },
+    "previous": "9c169c35502b282ea25fe79da039f80cb96163485ff9895f8cfff7530b801db6",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "readiness",
+    "timestamp": "2026-11-25T20:16:10.094294+00:00",
+    "hash": "0048f3d0f80655bfa4594562ae0abf3bd03d164ac74827dc5e7e640365e6a84b"
+  },
+  {
+    "action": "passed",
+    "agent": "Release Reviewer",
+    "details": {
+      "duration_seconds": 0.0,
+      "output": "50e4ff94a829a72de91e77562d738381ae2faaa9b0693701cd7f15e67df5b68f",
+      "tool": "release_checklist"
+    },
+    "previous": "0048f3d0f80655bfa4594562ae0abf3bd03d164ac74827dc5e7e640365e6a84b",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "readiness",
+    "timestamp": "2026-11-25T20:16:10.099101+00:00",
+    "hash": "a144ba181e4107ed0e986f2f6f635ff87df6e1a4a02c591649d55f7cb30e84d9"
+  },
+  {
+    "action": "approval_requested",
+    "agent": "Human",
+    "details": {
+      "digest": "a463255da1a9adfa793659ac4f976f5f0bb69e8bba3e37a9365a70851cfa5730",
+      "inputs": {
+        "readiness": "50e4ff94a829a72de91e77562d738381ae2faaa9b0693701cd7f15e67df5b68f"
+      }
+    },
+    "previous": "a144ba181e4107ed0e986f2f6f635ff87df6e1a4a02c591649d55f7cb30e84d9",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T20:16:10.100400+00:00",
+    "hash": "fd5cb3f867a1f3ef2e6cc3978c7804f4bc9cb7dbd4bcebef54d641bd19823192"
+  },
+  {
+    "action": "approved",
+    "agent": "Human",
+    "details": {
+      "actor": "local operator",
+      "checkpoint": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "inputs": {
+        "design": "09650cf78e69b4073802acd03303a25a96a712ed39a5151f389d0345221add92",
+        "documentation": "a2a296f9adeb695f06a46eb4f9c27a40c7d8cc4c74fa3950649531bbec35239c",
+        "execution_approval": "bbe22691a262fbb5e8e09885abe5639432d0618d66411bb6851d1f2cd72b5f42",
+        "implementation": "90a0f6bf4089c58e6eadb86d2dba07b88639b378c0cf88413706a0139837dc24",
+        "plan_approval": "fe0804589ea47ee815644317034381837974653266e09c55ddeb8496071fe974",
+        "qa": "fdbbf94f920cdd2fefcc3571439717033c4c620f0b96ab15f8cf2657bdb66ee1",
+        "requirements": "4367abe894a430f93b729a533c73cedf160ade2231de54de1649560c208a9180",
+        "requirements_approval": "4533ac09605d52055e2acb0481dd19c070dca539571fca91152f0cf6be0eface",
+        "security": "79ddf4bdf29314ae6be2f506a5cdb7eceb4b34722dd5aff106b285bf73b894d7"
+      },
+      "metrics_hash": "7399e91d2c325cdabe832604d1955b4626e9e33eb483146ad13986256e7cdb4f",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): review release_approval",
+      "subject": "a463255da1a9adfa793659ac4f976f5f0bb69e8bba3e37a9365a70851cfa5730",
+      "through": "documentation",
+      "trace_head": "9c169c35502b282ea25fe79da039f80cb96163485ff9895f8cfff7530b801db6"
+    },
+    "previous": "fd5cb3f867a1f3ef2e6cc3978c7804f4bc9cb7dbd4bcebef54d641bd19823192",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T20:16:10.442936+00:00",
+    "hash": "0c99eee540897020507c162cbcaba22b2158929b37cd22cb1c923d563f599255"
+  },
+  {
+    "action": "released",
+    "agent": "Control Plane",
+    "details": {
+      "checkpoint": "38dc66eb70e2c8107eefeaf9097c82bffb06bb863bb596ba121b038ceabe70a1",
+      "rollback": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "previous": "0c99eee540897020507c162cbcaba22b2158929b37cd22cb1c923d563f599255",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "release_approval",
+    "timestamp": "2026-11-25T20:16:10.466186+00:00",
+    "hash": "bbd45e67513ad7c1af8b057cde6e7f11efada0058f8267baf79211bb8dc0837f"
+  },
+  {
+    "action": "rollback",
+    "agent": "Human",
+    "details": {
+      "checkpoint": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "previous_state": "released",
+      "reason": "DEMO FIXTURE / SIMULATION (not a human decision): restore the original empty managed checkout"
+    },
+    "previous": "bbd45e67513ad7c1af8b057cde6e7f11efada0058f8267baf79211bb8dc0837f",
+    "revision": 2,
+    "run": "inventory",
+    "stage": "control",
+    "timestamp": "2026-11-25T20:16:10.911517+00:00",
+    "hash": "0ec19663c8600097a34a69389e657b2a7ab2e885ac64a7272da8408592be61cf"
+  }
+]

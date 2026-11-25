@@ -1,0 +1,65 @@
+{
+  "attempts": {
+    "approval_requested": 6,
+    "approved": 6,
+    "created": 1,
+    "failed": 1,
+    "invalidated": 1,
+    "passed": 10,
+    "repair_authorized": 1,
+    "revise": 1,
+    "safe_stop": 1,
+    "tool_requested": 11
+  },
+  "elapsed_seconds": 36.466249,
+  "human_interventions": 7,
+  "mttr_seconds": 21.236754,
+  "recovery_durations_seconds": [
+    21.236754
+  ],
+  "released_at_least_once": false,
+  "replans": 1,
+  "retries": 1,
+  "rollbacks": 0,
+  "stage_latency_seconds": {
+    "design": {
+      "attempts": 2,
+      "mean": 0.016,
+      "total": 0.032
+    },
+    "documentation": {
+      "attempts": 1,
+      "mean": 0.0,
+      "total": 0.0
+    },
+    "implementation": {
+      "attempts": 2,
+      "mean": 0.0,
+      "total": 0.0
+    },
+    "qa": {
+      "attempts": 2,
+      "mean": 15.5625,
+      "total": 31.125
+    },
+    "requirements": {
+      "attempts": 2,
+      "mean": 0.0,
+      "total": 0.0
+    },
+    "security": {
+      "attempts": 2,
+      "mean": 12.648499999999999,
+      "total": 25.296999999999997
+    }
+  },
+  "stage_success_rates": {
+    "design": 1.0,
+    "documentation": 1.0,
+    "implementation": 1.0,
+    "qa": 0.5,
+    "requirements": 1.0,
+    "security": 1.0
+  },
+  "unrecovered_gates": []
+}

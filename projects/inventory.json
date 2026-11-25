@@ -1,0 +1,9 @@
+{
+  "checkout": "inventory",
+  "blueprint": "examples/projects/inventory",
+  "build": "maven",
+  "contract": "openapi.yaml",
+  "required_routes": ["/stock", "/reservations"],
+  "editable_prefixes": ["src/main/java/", "src/test/java/"],
+  "extra_files": ["openapi.yaml"]
+}
